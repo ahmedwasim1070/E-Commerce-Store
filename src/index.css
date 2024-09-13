@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.underline-animation{
+    cursor: pointer;
+    position: relative;
+}
+.underline-animation::after{
+    content: '';
+    position: absolute;
+    width: 105%;
+    height: 3px;
+    background: #f4f4f4;
+    left: 0;
+    top: 26px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: .5s;
+}
+.underline-animation:hover::after{
+    transform: scale(1);
+}
