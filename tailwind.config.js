@@ -1,7 +1,6 @@
-import { Container } from 'postcss';
-
 /** @type {import('tailwindcss').Config} */
 export default {
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -12,6 +11,7 @@ export default {
         'custom-red': '0 -1px 20px rgba(255, 0, 0, 0.2)',  
       },
       screens:{
+        'esm': '350px',
         'fl': '1150px'
       }
     },
