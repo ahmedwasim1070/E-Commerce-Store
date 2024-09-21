@@ -70,29 +70,11 @@
 
 
 .bg-img{
-    background-image: url(../public/background-img.png);
+    background-image: url(/background-img.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-
-/* @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes fadeOut {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  } */
   
   .fade-in {
     opacity: 1;

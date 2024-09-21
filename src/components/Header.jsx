@@ -23,7 +23,7 @@ function Header({smNav}) {
   return (
     <> 
       <nav className='w-full h-[120px] bg-black bg-opacity-30 backdrop-blur-md  flex'>
-        <div className='w-[15 %] h-full flex items-center ml-[3vw] '><img className='w-[166px] h-[35px]' src='../../public/crush-logo.png' /></div>
+        <div className='w-[15 %] h-full flex items-center ml-[3vw] '><img className='w-[166px] h-[35px]' src='/crush-logo.png' /></div>
 
         {navResize ?        
         <div className='w-[75%] flex justify-center items-center '>  

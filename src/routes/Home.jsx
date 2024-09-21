@@ -3,6 +3,7 @@ import '../index.css';
 
 import {productData} from '../data/Productdata';
 import Header from '../components/Header';
+import Product from '../components/Product';
 
 
 function Home() {
@@ -22,11 +23,12 @@ function Home() {
       <div className='w-full mx-auto fl:container'>
         <Header smNav={smNav} />
         <Hero/>
+        <Product/>
 
 
 
         {shSmNav?
-          <div onClick={smNav} className='w-full h-full absolute top-[120px] flex justify-end bg-black bg-opacity-30 backdrop-blur-md '>
+          <div onClick={smNav} className='w-full h-[85vh] absolute top-[120px] flex justify-end bg-black bg-opacity-30 backdrop-blur-md overflow-y-hidden'>
             <div onClick={smNavClick} className='w-[50%] h-full bg-black bg-opacity-60 backdrop-blur-sm slide-in'>
               <ul className='w-full h-full text-white text-center text-[1rem] mt-8 flex flex-col  items-center'>
                 <li className='py-5 underline-animation-sm'>Home</li>
@@ -87,7 +89,7 @@ function Hero(){
       </div>
       <div className='h-full flex flex-col justify-center 2xl:relative 2xl:left-0 2xl:top-0 2xl:w-[40%] xl:relative xl:left-0 xl:top-0 xl:w-[40%] lg:relative lg:left-0 lg:top-0 lg:w-[40%] md:absolute md:left-[12%] md:top-[0%] md:w-[40%] sm:absolute sm:left-[12%] sm:top-[0%] sm:w-[40%] esm:absolute esm:left-[10%] esm:top-[0%] esm:w-[250px]'>
         <div className='mb-20'>
-          <img loading='lazy' className={`drop-shadow-custom-red 2xl:w-[20vw] xl:w-[20vw] lg:w-[20vw] md:w-[30vw] sm:w-[30vw] esm:w-[250px] ${fade}`} src={`/productimg/${productData[idxPr].productImg}`} />
+          <img loading='lazy' className={`drop-shadow-${productData[idxPr].productColor} 2xl:w-[20vw] xl:w-[20vw] lg:w-[20vw] md:w-[30vw] sm:w-[30vw] esm:w-[250px] ${fade}`} src={`/productimg/${productData[idxPr].productImg}`} />
         </div>
         <div className='w-full flex mr-20'>
           <button className='flex gap-2 border border-solid items-center  rounded-full bg-[#461111]  trnasition-all duration-300 outline-none  hover:bg-transparent 2xl:p-4 2xl:mt-10 xl:p-2 xl:mx-5 xl:mt-0 lg:p-2 lg:mt-0 lg:mx-2 md:p-3 md:mx-0 md:mt-5 sm:p-2 sm:mt-2 sm:mx-0 esm:mt-[220px] esm:p-2'>
