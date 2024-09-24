@@ -9,13 +9,13 @@ function Product() {
 
   const productList=productData.map((c,i)=>{
     return(
-      <div className={`w-[300px] h-[400px] border border-[rgba(255,255,255,0.18)] rounded-2xl shadow-xl shadow-[rgba(255,255,255,0.1)] p-5 cursor-pointer transition-all duration-500 group hover:scale-[1.02] `}>
+      <div key={i} className={`w-[300px] h-[400px] border border-[rgba(255,255,255,0.18)] rounded-2xl shadow-xl shadow-[rgba(255,255,255,0.1)] p-5 cursor-pointer transition-all duration-500 group hover:scale-[1.02] `}>
         <div className='w-full h-[60%] flex justify-center items-center'>
           <img className='w-full h-full' src={`/productimg/${c.productImg}`}/>
         </div>
         <div className='w-full h-full pt-4 text-white'>
           <p className='text-[1.5rem]'>{c.productName}</p>
-          <h2 className=' font-bold text-[1.5rem]'>Rs: 1700</h2>
+          <h2 className=' font-bold text-[1.5rem]'>Rs: {c.productPrice}</h2>
           <p className='text-[15px] mb-2'>|{c.productType}</p>
           <button className='text-md outline-none  group-hover:underline  '>Buy Now &gt;&gt; </button>
         </div>

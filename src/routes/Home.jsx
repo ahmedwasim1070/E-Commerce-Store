@@ -4,6 +4,8 @@ import '../index.css';
 import {productData} from '../data/Productdata';
 import Header from '../components/Header';
 import Product from '../components/Product';
+import Contact from '../components/Contact';
+import About from '../components/About';
 
 
 function Home() {
@@ -24,7 +26,8 @@ function Home() {
         <Header smNav={smNav} />
         <Hero/>
         <Product/>
-
+        <Contact/>
+        <About/>
 
 
         {shSmNav?
@@ -84,7 +87,7 @@ function Hero(){
     <section className='w-full h-[85vh] bg-black bg-opacity-30 backdrop-blur-md  text-white flex justify-evenly md:relative sm:relative'>
       <div className='h-[50%] flex flex-col justify-end 2xl:relative 2xl:left-0 2xl:top-0 2xl:w-[25%] xl:relative xl:left-0 xl:top-0 xl:w-[25%] lg:relative lg:top-0 lg:left-0 lg:w-[25%] md:absolute md:left-[52%] md:top-[-5%] md:w-full sm:absolute sm:left-[52%] sm:top-[-5%] sm:w-full esm:absolute esm:top-[25%] esm:left-[10%] '>
         <h1 className={`2xl:text-[4rem] xl:text-[3.2rem] lg:text-[2.5rem] md:text-[2.5rem] sm:text-[2.5rem] esm:text-[3rem] ${fade}`} >{productData[idxPr].productName}</h1>
-        <p className={`2xl:text-[2rem] xl:text-[1.5rem] lg:text-[1.2rem] md:text-[1.5rem] sm:text-[1.5rem] esm:text-[1.5rem] mt-2 ${fade}`} >Love at First Fragrance</p>
+        <p className={`2xl:text-[2rem] xl:text-[1.5rem] lg:text-[1.2rem] md:text-[1.5rem] sm:text-[1.2rem] esm:text-[1.5rem] mt-2 ${fade}`} >{productData[idxPr].productTagline}</p>
         <p className={`2xl:text-[1rem] xl:text-[1rem] lg:text-[1rem] esm:mt-2  ${fade}`} >| {productData[idxPr].productType}</p>
       </div>
       <div className='h-full flex flex-col justify-center 2xl:relative 2xl:left-0 2xl:top-0 2xl:w-[40%] xl:relative xl:left-0 xl:top-0 xl:w-[40%] lg:relative lg:left-0 lg:top-0 lg:w-[40%] md:absolute md:left-[12%] md:top-[0%] md:w-[40%] sm:absolute sm:left-[12%] sm:top-[0%] sm:w-[40%] esm:absolute esm:left-[10%] esm:top-[0%] esm:w-[250px]'>
@@ -114,6 +117,5 @@ function Hero(){
     </section>
   )
 }
-
 
 export default Home
