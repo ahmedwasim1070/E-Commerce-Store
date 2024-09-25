@@ -1,12 +1,12 @@
 import React, { ect, useEffect, useState } from 'react';
 import '../index.css';
 
-import {productData} from '../data/Productdata';
 import Header from '../components/Header';
 import Product from '../components/Product';
 import Contact from '../components/Contact';
 import About from '../components/About';
-
+import Footer from '../components/Footer';
+import {productData} from '../data/Productdata';
 
 function Home() {
 
@@ -28,6 +28,7 @@ function Home() {
         <Product/>
         <Contact/>
         <About/>
+        <Footer/>
 
 
         {shSmNav?

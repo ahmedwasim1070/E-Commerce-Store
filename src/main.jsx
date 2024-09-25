@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
 import './index.css'
 
 import Home from './routes/Home'
+import ProductPage from './routes/ProductPage'
 
 
 createRoot(document.getElementById('root')).render(
@@ -11,6 +12,7 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home/> } />
+        <Route path='/product/:id' element={<ProductPage/>} />
       </Routes>
     </BrowserRouter>    
   </StrictMode>,
