@@ -1,7 +1,7 @@
 import React from 'react';
 import '../index.css';
 
-import {productData} from '../data/Productdata';
+import {productData} from '../data/Data';
 import { Link } from 'react-router-dom';
 
 function Product() {
