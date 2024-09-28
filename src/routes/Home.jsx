@@ -96,7 +96,7 @@ function Hero(){
           <img loading='lazy' className={`drop-shadow-${productData[idxPr].productColor}  2xl:w-[20vw] xl:w-[20vw] lg:w-[20vw] md:w-[30vw] sm:w-[30vw] esm:w-[250px] ${fade}`} src={`/productimg/${productData[idxPr].productImg}`} />
         </div>
         <div className='w-full flex mr-20'>
-          <button className='flex gap-2 border border-solid items-center  rounded-full bg-[#461111]  trnasition-all duration-300 outline-none  hover:bg-transparent 2xl:p-4 2xl:mt-10 xl:p-2 xl:mx-5 xl:mt-0 lg:p-2 lg:mt-0 lg:mx-2 md:p-3 md:mx-0 md:mt-5 sm:p-2 sm:mt-2 sm:mx-0 esm:mt-[220px] esm:p-2'>
+          <button className='flex gap-2 border border-solid items-center mb-5  rounded-full bg-[#461111]  trnasition-all duration-300 outline-none  hover:bg-transparent 2xl:p-4 2xl:mt-10 xl:p-2 xl:mx-5 xl:mt-0 lg:p-2 lg:mt-0 lg:mx-2 md:p-3 md:mx-0 md:mt-5 sm:p-2 sm:mt-2 sm:mx-0 esm:mt-[220px] esm:p-2'>
             <p className='text-xl text-center ml-2'>Add to Cart</p>
             <div className='flex items-center justify-center w-[24px] h-[24px]'>
               <h1 className='text-xl'>+</h1>
