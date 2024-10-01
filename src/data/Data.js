@@ -41,7 +41,7 @@ export let productData=[
     {
         'productId': 4,
         'productName': 'Sky Veil',
-        'productPrice': '1200',
+        'productPrice': '1700',
         'productImg': 'perfume-4.png',
         'productTagline': 'Make Your Mark with Sky Veil.',
         'productSize' : '50ml',
