@@ -13,7 +13,7 @@ import {productData,cartData} from '../data/Data';
 function Home() {
 
   let [shSmNav,setShSmNav]=useState(false);
-  let [shCart,setShCart]=useState(false)
+  let [shCart,setShCart]=useState(false);
   let [idxPr,setIdxPr]=useState(0);
 
   const smNav=()=>{
@@ -29,14 +29,13 @@ function Home() {
     if(!productExists){
       cartData.push(productData[idxPr]);
     }
-    console.log(cartData)
   }
 
   return (
     <main className='bg-img w-full h-[100vh] overflow-x-hidden'>
       <div className='w-full mx-auto fl:container'>
         {shCart?
-        <Cart idxPr={idxPr} setIdxPr={setIdxPr} shCart={shCart} setShCart={setShCart}/>
+        <Cart shCart={shCart} setShCart={setShCart} />
         :
         (
         <>
