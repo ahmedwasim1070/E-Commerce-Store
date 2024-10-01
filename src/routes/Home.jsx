@@ -1,4 +1,4 @@
-import React, { ect, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../index.css';
 
 import Header from '../components/Header';
@@ -6,11 +6,15 @@ import Product from '../components/Product';
 import Contact from '../components/Contact';
 import About from '../components/About';
 import Footer from '../components/Footer';
-import {productData} from '../data/Data';
+import Cart from '../components/Cart';
+import {productData,cartData} from '../data/Data';
+
 
 function Home() {
 
   let [shSmNav,setShSmNav]=useState(false);
+  let [shCart,setShCart]=useState(false)
+  let [idxPr,setIdxPr]=useState(0);
 
   const smNav=()=>{
     setShSmNav(!shSmNav);
@@ -20,18 +24,34 @@ function Home() {
     event.stopPropagation(); 
   }
 
+  const addtoCart=()=>{
+    const productExists = cartData.some(c => c.productId === productData[idxPr].productId);
+    if(!productExists){
+      cartData.push(productData[idxPr]);
+    }
+    console.log(cartData)
+  }
+
   return (
     <main className='bg-img w-full h-[100vh] overflow-x-hidden'>
       <div className='w-full mx-auto fl:container'>
-        <Header smNav={smNav} />
-        <Hero/>
-        <Product/>
-        <Contact/>
-        <About/>
-        <Footer/>
+        {shCart?
+        <Cart idxPr={idxPr} setIdxPr={setIdxPr} shCart={shCart} setShCart={setShCart}/>
+        :
+        (
+        <>
+          <Header smNav={smNav}  setShCart={setShCart} />
+          <Hero addtoCart={addtoCart} idxPr={idxPr} setIdxPr={setIdxPr}/>
+          <Product/>
+          <Contact/>
+          <About/>
+          <Footer/>
+        </>
+      )}
 
 
-        {shSmNav?
+
+        {shSmNav&&
           <div onClick={smNav} className='w-full h-[85vh] absolute top-[120px] flex justify-end bg-black bg-opacity-30 backdrop-blur-md overflow-y-hidden'>
             <div onClick={smNavClick} className='w-[50%] h-full bg-black bg-opacity-60 backdrop-blur-sm slide-in'>
               <ul className='w-full h-full text-white text-center text-[1rem] mt-8 flex flex-col  items-center'>
@@ -42,8 +62,6 @@ function Home() {
               </ul>
             </div>
           </div> 
-        :
-        ''
         }
       </div>
     </main>
@@ -53,22 +71,21 @@ function Home() {
 
 // Main Slide Show Menu Bar
 
-function Hero(){
-  let [idxPr,setIdxPr]=useState(0);
+function Hero({idxPr,setIdxPr,addtoCart}){
   let [fade,setFade]=useState('fade-in');
 
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setFade('fade-out');
-  //     setTimeout(() => {
-  //       setIdxPr((prevIdx) => (prevIdx >= productData.length - 1 ? 0 : prevIdx + 1)); 
-  //       setFade('fade-in');
-  //     }, 300); 
-  //   }, 5000); 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade('fade-out');
+      setTimeout(() => {
+        setIdxPr((prevIdx) => (prevIdx >= productData.length - 1 ? 0 : prevIdx + 1)); 
+        setFade('fade-in');
+      }, 300); 
+    }, 5000); 
 
-  //   return () => clearInterval(interval);
-  // }, []);
+    return () => clearInterval(interval);
+  }, [idxPr]);
 
 
   const changeIdx = (direction) => {
@@ -83,7 +100,6 @@ function Hero(){
     }, 300); 
   };
 
-
   return(
     <section className='w-full h-[85vh] bg-black bg-opacity-30 backdrop-blur-md  text-white flex justify-evenly md:relative sm:relative'>
       <div className='h-[50%] flex flex-col justify-end 2xl:relative 2xl:left-0 2xl:top-0 2xl:w-[25%] xl:relative xl:left-0 xl:top-0 xl:w-[25%] lg:relative lg:top-0 lg:left-0 lg:w-[25%] md:absolute md:left-[52%] md:top-[-5%] md:w-full sm:absolute sm:left-[52%] sm:top-[-5%] sm:w-full esm:absolute esm:top-[25%] esm:left-[10%] '>
@@ -96,7 +112,7 @@ function Hero(){
           <img loading='lazy' className={`drop-shadow-${productData[idxPr].productColor}  2xl:w-[20vw] xl:w-[20vw] lg:w-[20vw] md:w-[30vw] sm:w-[30vw] esm:w-[250px] ${fade}`} src={`/productimg/${productData[idxPr].productImg}`} />
         </div>
         <div className='w-full flex mr-20'>
-          <button className='flex gap-2 border border-solid items-center mb-5  rounded-full bg-[#461111]  trnasition-all duration-300 outline-none  hover:bg-transparent 2xl:p-4 2xl:mt-10 xl:p-2 xl:mx-5 xl:mt-0 lg:p-2 lg:mt-0 lg:mx-2 md:p-3 md:mx-0 md:mt-5 sm:p-2 sm:mt-2 sm:mx-0 esm:mt-[220px] esm:p-2'>
+          <button onClick={addtoCart} className='flex gap-2 border border-solid items-center mb-5  rounded-full bg-[#461111]  trnasition-all duration-300 outline-none  hover:bg-transparent 2xl:p-4 2xl:mt-10 xl:p-2 xl:mx-5 xl:mt-0 lg:p-2 lg:mt-0 lg:mx-2 md:p-3 md:mx-0 md:mt-5 sm:p-2 sm:mt-2 sm:mx-0 esm:mt-[220px] esm:p-2'>
             <p className='text-xl text-center ml-2'>Add to Cart</p>
             <div className='flex items-center justify-center w-[24px] h-[24px]'>
               <h1 className='text-xl'>+</h1>

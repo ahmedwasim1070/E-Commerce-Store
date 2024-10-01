@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import '../index.css';
-
-import {productData} from '../data/Data';
+import {cartData} from '../data/Data';
 import { Link } from 'react-router-dom';
 
-function Product() {
 
-  const productList=productData.map((c,i)=>{
-    
+
+function Cart({shCart,setShCart,idxPr,setIdxPr}) {
+  const cartList=cartData.map((c,i)=>{
+
     let [infoPop,setInfoPop]=useState(false);
     
     const handleResize=()=>{
@@ -43,23 +42,29 @@ function Product() {
         </div>
       </Link>
     )
-  });
 
-
-
+  })
   return (
-    <>
-      <section className='w-full bg-black bg-opacity-30 bg backdrop-blur-md'>
-        <div className='w-full h-20 mb-[100px]'>
-          <h1 className='text-white text-center text-[3rem] py-2'>Products</h1>
-          <hr className='w-[80%] mx-auto h-1 my-5'/>
+    <section className={`w-[100%] h-[100vh] bg-black bg-opacity-30 backdrop-blur-lg text-white  overflow-x-hidden transition-all duration-300 ${shCart? 'h-[-1000px]': 'max-h-[1000px]'}`}>
+        <div className='w-full h-[150px] flex items-center ml-[90%] '>
+            <button onClick={()=>setShCart(false)} className='text-[rgba(255,255,255,0.7)] border border-[rgba(255,255,255,0.4)] p-3 rounded-full transition-all duration-300 hover:bg-[rgba(255,255,255,0.3)]'><svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRrule="evenodd" clipRule="evenodd" d="M19.207 6.207a1 1 0 0 0-1.414-1.414L12 10.586 6.207 4.793a1 1 0 0 0-1.414 1.414L10.586 12l-5.793 5.793a1 1 0 1 0 1.414 1.414L12 13.414l5.793 5.793a1 1 0 0 0 1.414-1.414L13.414 12l5.793-5.793z" fill="#f3f3f3"/></svg></button>
         </div>
-        <div className='w-full h-100  flex  flex-wrap  justify-center px-[5%] gap-5  gap-y-10'>
-          {productList}
+        <div>
+          <h1 className='text-center 2xl:text-[3rem] xl:text-[2.8rem] lg:text-[2.6rem] md:text-[2.4rem] sm:text-[2.2rem] esm:text-[2rem]  my-5'>Carted Item's</h1>
+          {cartList.length>=1?
+          <div className='w-full h-100  flex  flex-wrap  justify-center px-[5%] gap-5  gap-y-10'>
+            {cartList}
+          </div>
+          :
+          <div  className='w-full flex justify-center items-center'>
+            <p className='text-[1.5rem]'>No Items Carted Here</p>
+          </div>
+        }
         </div>
-      </section>
-    </>
+
+
+    </section>
   )
 }
 
-export default Product
+export default Cart
