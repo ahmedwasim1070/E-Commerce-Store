@@ -100,17 +100,17 @@ function Hero({idxPr,setIdxPr,addtoCart}){
   };
 
   return(
-    <section className={`w-full h-[85vh] flex justify-evenly md:relative sm:relative esm:relative ${fade} text-white ${productData[idxPr].productBg}`}>
-      <div className='h-[55%] flex flex-col justify-end 2xl:relative 2xl:left-0 2xl:top-0 2xl:w-[30%] xl:relative xl:left-0 xl:top-0 xl:w-[25%] lg:relative lg:top-0 lg:left-0 lg:w-[25%] md:absolute md:left-[52%] md:top-[-5%] md:w-full sm:absolute sm:left-[52%] sm:top-[-5%] sm:w-full esm:absolute esm:top-[25%] esm:left-[10%] '>
+    <section className={`w-full 2xl:h-[85vh] xl:h-[85vh] lg:h-[85vh] md:h-[85vh] sm:h-[85vh] flex justify-evenly md:relative sm:relative esm:relative esm:h-[90vh] ${fade} text-white ${productData[idxPr].productBg}`}>
+      <div className='h-[55%] flex flex-col justify-end 2xl:relative 2xl:left-0 2xl:top-0 2xl:w-[33%] xl:relative xl:left-0 xl:top-0 xl:w-[33%] lg:relative lg:top-0 lg:left-0 lg:w-[33%] md:absolute md:left-[42%] md:top-[-5%] md:w-full sm:absolute sm:left-[46%] sm:top-[-5%] sm:w-full esm:absolute esm:top-[25%] esm:left-[10%] '>
         <h1 className={`2xl:text-[4rem] xl:text-[3.2rem] lg:text-[2.5rem] md:text-[2.5rem] sm:text-[2.5rem] esm:text-[3rem] ${fade}`} >{productData[idxPr].productName}</h1>
         <p className={`2xl:text-[2rem] xl:text-[1.5rem] lg:text-[1.2rem] md:text-[1.5rem] sm:text-[1.2rem] esm:text-[1.5rem] mt-2 ${fade}`} >{productData[idxPr].productTagline}</p>
         <p className={`2xl:text-[1rem] xl:text-[1rem] lg:text-[1rem] esm:mt-2 `} >| {productData[idxPr].productType}</p>
       </div>
-      <div className='h-full flex flex-col justify-center ml-20 2xl:relative 2xl:left-0 2xl:top-0 2xl:w-[40%] xl:relative xl:left-0 xl:top-0 xl:w-[40%] lg:relative lg:left-0 lg:top-0 lg:w-[40%] md:absolute md:left-[12%] md:top-[0%] md:w-[40%] sm:absolute sm:left-[12%] sm:top-[0%] sm:w-[40%] esm:absolute esm:left-[10%] esm:top-[0%] esm:w-[250px]'>
+      <div className='h-full flex flex-col justify-center ml-20 2xl:relative 2xl:left-0 2xl:top-0 2xl:w-[40%] xl:relative xl:left-0 xl:top-0 xl:w-[40%] lg:relative lg:left-0 lg:top-0 lg:w-[40%] md:absolute md:left-[2%] md:top-[0%] md:w-[40%] sm:absolute sm:left-[1%] sm:top-[0%] sm:w-[40%] esm:absolute esm:left-[-5%] esm:top-[3%] esm:w-[250px]'>
         <div className='mb-10'>
           <img loading='lazy' className={`drop-shadow-${productData[idxPr].productColor}  2xl:w-[17vw] xl:w-[20vw] lg:w-[20vw] md:w-[30vw] sm:w-[30vw] esm:w-[250px] `} src={`/productimg/${productData[idxPr].productImg}`} />
         </div>
-        <div className='w-full ml-10'>
+        <div className='w-full ml-5'>
           <button onClick={addtoCart} className='flex gap-2 border border-solid items-center mb-5 rounded-full bg-transparent font-bold  trnasition-all duration-300 outline-none  hover:bg-black 2xl:p-4 2xl:mt-10 xl:p-2 xl:mx-5 xl:mt-0 lg:p-2 lg:mt-0 lg:mx-2 md:p-3 md:mx-0 md:mt-5 sm:p-2 sm:mt-2 sm:mx-0 esm:mt-[220px] esm:p-2'>
             <p className='text-xl text-center ml-2'>Add to Cart</p>
             <div className='flex items-center justify-center w-[24px] h-[24px]'>
@@ -119,7 +119,7 @@ function Hero({idxPr,setIdxPr,addtoCart}){
           </button>
         </div>
       </div>
-      <div className='flex items-end 2xl:relative 2xl:left-0 2xl:top-0 2xl:w-[8%] 2xl:h-[55%] xl:relative xl:left-0 xl:top-0 xl:w-[8%] xl:h-[55%] lg:relative lg:top-0 lg:left-0 lg:w-[8%] lg:h-[55%] md:absolute md:left-[75%] md:top-[70%] md:w-full md:h-20 sm:absolute sm:top-[65%] sm:left-[75%] sm:h-20 sm:w-full esm:absolute esm:w-full esm:h-20 esm:top-[85%] esm:left-[75%]'>
+      <div className='flex items-end 2xl:relative 2xl:left-0 2xl:top-0 2xl:w-[8%] 2xl:h-[55%] xl:relative xl:left-0 xl:top-0 xl:w-[8%] xl:h-[55%] lg:relative lg:top-0 lg:left-0 lg:w-[8%] lg:h-[55%] md:absolute md:left-[75%] md:top-[80%] md:w-full md:h-20 sm:absolute sm:top-[75%] sm:left-[75%] sm:h-20 sm:w-full esm:absolute esm:w-full esm:h-20 esm:top-[85%] esm:left-[75%]'>
         <div className='w-full'>
           <p className='2xl:text-[1.2rem] 2xl:my-0 xl:text-[1rem] xl:my-0 lg:text-[1rem] lg:my-1 md:text-[1rem] md:my-1 sm:text-[1rem] sm:my-1 esm:text-[1rem] esm:my-1'>Details :</p>
           <h1 className={`2xl:text-2xl 2xl:my-2 xl:text-[1.4rem] xl:my-2 lg:text-[1.2rem] lg:my-1 md:text-[1.3rem] sm:text-[1.3rem] esm:text-[1.2rem]`}>Rs: {productData[idxPr].productPrice}</h1>

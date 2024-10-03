@@ -10,7 +10,7 @@ export let productData=[
         'productStatus': 'In-Stock',
         'productDes': `Unleash your inner confidence with Shelby, a fragrance inspired by the iconic Sauvage by Dior, embodying the spirit of freedom and rugged masculinity. From the very first spritz, the vibrant Calabrian bergamot and a hint of pepper awaken the senses, introducing a fresh and invigorating top note that sets the stage for what’s to come.<br/><br/>As the scent unfolds, a harmonious blend of Sichuan pepper, lavender, and pink pepper dances at the heart, intertwined with earthy nuances of vetiver, patchouli, geranium, and elemi. This sophisticated mix exudes a bold yet refined character, perfect for the modern man who embraces every moment with confidence.<br/><br/>The journey concludes with the rich depth of ambroxan, cedar, and labdanum, which linger on the skin, leaving a trail of intrigue. Designed for both young and mature men, Shelby is versatile enough to transition seamlessly from day to night.<br/><br/>Ideal for casual outings, professional settings, or romantic evenings, Shelby is the perfect companion for spring, summer, and fall. Its fresh, spicy aroma captivates, while its outstanding longevity ensures you make a lasting impression.<br/><br/>Awaken your senses and express your individuality with Shelby, a scent that redefines masculinity and sophistication.<br/>`,
         'productBg' : 'bg-perfume-1',
-        'productNotesimg': 'perfume-1-notes.webp'
+        'productNotesimg': 'perfume-1-notes.webp',
     },
     {
         'productId': 2,
@@ -30,7 +30,7 @@ export let productData=[
         'productName': 'Emerald Mist',
         'productPrice': '1200',
         'productImg': 'perfume-3.webp',
-        'productTagline': 'A veil of mystery and elegance.',
+        'productTagline': 'A Fresh Splash of Boldness',
         'productType': 'For Men / Women',
         'productSize' : '50ml',
         'productStatus': 'In-Stock',
