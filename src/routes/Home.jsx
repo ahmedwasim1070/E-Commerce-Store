@@ -1,72 +1,103 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../index.css';
-
 import Header from '../components/Header';
 import Product from '../components/Product';
 import Contact from '../components/Contact';
 import About from '../components/About';
 import Footer from '../components/Footer';
 import Cart from '../components/Cart';
-import {productData,cartData} from '../data/Data';
-
+import { productData, cartData } from '../data/Data';
 
 function Home() {
+  let [shSmNav, setShSmNav] = useState(false);
+  let [shCart, setShCart] = useState(false);
+  let [idxPr, setIdxPr] = useState(0);
 
-  let [shSmNav,setShSmNav]=useState(false);
-  let [shCart,setShCart]=useState(false);
-  let [idxPr,setIdxPr]=useState(0);
+  const contactRef = useRef(null);
+  const aboutRef = useRef(null);
 
-  const smNav=()=>{
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 } 
+    );
+
+    if (contactRef.current) {
+      observer.observe(contactRef.current);
+    }
+    if (aboutRef.current) {
+      observer.observe(aboutRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const smNav = () => {
     setShSmNav(!shSmNav);
-  }
+  };
 
-  const smNavClick=(event)=>{
-    event.stopPropagation(); 
-  }
+  const smNavClick = (event) => {
+    event.stopPropagation();
+  };
 
-  const addtoCart=()=>{
+  const addtoCart = () => {
     const productExists = cartData.some(c => c.productId === productData[idxPr].productId);
-    if(!productExists){
+    if (!productExists) {
       cartData.push(productData[idxPr]);
     }
-  }
+  };
 
   return (
     <main className=' w-full h-[100vh] overflow-x-hidden'>
       <div className='w-full mx-auto fl:container'>
-        {shCart?
-        <Cart shCart={shCart} setShCart={setShCart} />
-        :
-        (
-        <>
-          <Header smNav={smNav}  setShCart={setShCart} />
-          <Hero addtoCart={addtoCart} idxPr={idxPr} setIdxPr={setIdxPr}/>
-          <Product/>
-          <Contact/>
-          <About/>
-          <Footer/>
-        </>
-      )}
+        {shCart ? (
+          <Cart shCart={shCart} setShCart={setShCart} />
+        ) : (
+          <>
+            <Header smNav={smNav} setShCart={setShCart} />
+            <Hero addtoCart={addtoCart} idxPr={idxPr} setIdxPr={setIdxPr} />
+            <Product/>
+            <div ref={contactRef} className="opacity-0 transition-opacity duration-1000 ease-in-out">
+              <Contact />
+            </div>
+            <div ref={aboutRef} className="opacity-0 transition-opacity duration-1000 ease-in-out">
+              <About />
+            </div>
+            <Footer />
+          </>
+        )}
 
-
-
-        {shSmNav&&
-          <div onClick={smNav} className='w-full h-[85vh] absolute top-[120px] flex justify-end  overflow-y-hidden'>
-            <div onClick={smNavClick} className='w-[50%] h-full bg-black bg-opacity-60 backdrop-blur-sm slide-in'>
-              <ul className='w-full h-full text-white text-center text-[1rem] mt-8 flex flex-col  items-center'>
+        {shSmNav && (
+          <div
+            onClick={smNav}
+            className='w-full h-[85vh] absolute top-[120px] flex justify-end  backdrop-blur-sm  overflow-y-hidden'
+          >
+            <div
+              onClick={smNavClick}
+              className='w-[50%] h-full bg-white  slide-in'
+            >
+              <ul className='w-full h-full border border-[rgba(0,0,0,0.5)] rounded-lg text-center text-[1rem] pt-8 flex flex-col  items-center'>
                 <li className='py-5 underline-animation-sm'>Home</li>
                 <li className='py-5 underline-animation-sm'>Products</li>
                 <li className='py-5 underline-animation-sm'>Contact Us</li>
                 <li className='py-5 underline-animation-sm'>About Us</li>
               </ul>
             </div>
-          </div> 
-        }
+          </div>
+        )}
       </div>
     </main>
-
-  )
+  );
 }
+
+
 
 // Main Slide Show Menu Bar
 
