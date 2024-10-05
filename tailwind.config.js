@@ -16,7 +16,7 @@ export default {
 
       },
       screens:{
-        'esm': '350px',
+        'esm': '240px',
         'fl': '1150px'
       }
     },

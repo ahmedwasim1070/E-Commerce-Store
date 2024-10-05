@@ -2,7 +2,8 @@ export let productData=[
     {
         'productId': 1,
         'productName': 'Shelby',
-        'productPrice': '1700',
+        'productPrice': '2300',
+        'productSale': '301',
         'productImg': 'perfume-1.webp',
         'productTagline': 'Elegance meets boldness.',
         'productSize' : '50ml',
@@ -20,7 +21,8 @@ export let productData=[
     {
         'productId': 2,
         'productName': 'Divine',
-        'productPrice': '1700',
+        'productPrice': '2300',
+        'productSale': '301',
         'productImg': 'perfume-2.webp',
         'productTagline': 'A scent touched by heaven.',
         'productSize' : '50ml',
@@ -38,10 +40,11 @@ export let productData=[
     {
         'productId': 3,
         'productName': 'Emerald Mist',
-        'productPrice': '1200',
+        'productPrice': '2200',
+        'productSale': '401',
         'productImg': 'perfume-3.webp',
         'productTagline': 'A Fresh Splash of Boldness',
-        'productType': 'For Men ',
+        'productType': 'For Men / Women ',
         'productSize' : '50ml',
         'productStatus': 'In-Stock',
         'productDes': 'Dive into the depths of sophistication with Emerald Mist, a fragrance inspired by the iconic Acqua di Giò Profondo. Crafted for the man who is drawn to the untamed beauty of the ocean, this scent captures the essence of freshness and refined elegance.<br/><br/>The fragrance opens with invigorating top notes of sea notes, Aquozone, bergamot, and green mandarin, evoking a crisp sea breeze on a sunlit day. As it develops, the middle notes of rosemary, lavender, cypress, and mastic add a herbal touch, enveloping the wearer in a sophisticated yet natural aura that evokes the coastal Mediterranean.<br/><br/>At its base, mineral notes, musk, patchouli, and amber provide an earthy depth, adding boldness to the fresh aquatic character. Emerald Mist is best worn during spring and summer, perfect for daytime activities, casual outings, and outdoor adventures.<br/><br/>With its marine and citrus notes, Emerald Mist offers a refreshing and invigorating scent that boasts impressive longevity. This unique blend of modern elegance and bold, aquatic depth ensures that you stand out while feeling revitalized throughout the day.<br/><br/>Experience the freshness of the ocean with Emerald Mist—a scent that embodies the spirit of adventure and sophistication.<br/><br/>',
@@ -56,7 +59,8 @@ export let productData=[
     {
         'productId': 4,
         'productName': 'Sky Veil',
-        'productPrice': '1700',
+        'productPrice': '2200',
+        'productSale': '401',
         'productImg': 'perfume-4.webp',
         'productTagline': 'Make Your Mark with Sky Veil.',
         'productSize' : '50ml',
@@ -74,7 +78,8 @@ export let productData=[
     {
         'productId': 5,
         'productName': 'Pink Whisper',
-        'productPrice': '1700',
+        'productPrice': '2000',
+        'productSale': '301',
         'productImg': 'perfume-5.webp',
         'productTagline': 'Whispers of Charm and Confidence.',
         'productSize' : '50ml',
@@ -92,7 +97,8 @@ export let productData=[
     {
         'productId': 6,
         'productName': 'Velvet Bloom',
-        'productPrice': '1700',
+        'productPrice': '2000',
+        'productSale': '301',
         'productImg': 'perfume-6.webp',
         'productTagline': 'Let your radiance bloom.',
         'productSize' : '50ml',
@@ -107,10 +113,6 @@ export let productData=[
         'productMNotes': 'Peony , Vanilla Orchid , Red Berries , Jasmine , Lily-of-the-Valley',
         'productBNotes': 'Musk , Woody Notes , Oak Moss',
     },
-]
-
-export let cartData=[
-
 ]
 
 

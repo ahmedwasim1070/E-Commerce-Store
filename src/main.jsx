@@ -1,19 +1,52 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './index.css'
+import { StrictMode, useState } from 'react'; // Import useState here
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import './index.css';
 
-import Home from './routes/Home'
-import ProductPage from './routes/ProductPage'
+import {productData} from './data/Data';
+import Home from './routes/Home';
+import ProductPage from './routes/ProductPage';
+import Cart from './routes/Cart';
+import Products from './routes/Products';
+import ContactPage from './routes/ContactPage';
+import AboutPage from './routes/AboutPage';
 
+
+function App() {
+  const [idxPr, setIdxPr] = useState(0);
+  const [cartData,setCartData]=useState([]);
+
+  const addToCart=(i)=>{
+    const itemToAdd=productData[i];
+    const isRepeat=cartData.some(item=> item.productId ===itemToAdd.productId);
+    if(!isRepeat){
+      setCartData([...cartData,itemToAdd]);
+    }
+  }
+
+  const removeCart=(i)=>{
+    setCartData(cartData.filter((_, index) => index !== i));
+  }
+
+  return (
+    <Routes>
+      <Route 
+        path='/' 
+        element={<Home  idxPr={idxPr} setIdxPr={setIdxPr} addToCart={addToCart} />} 
+      />
+      <Route path='/product/:id' element={<ProductPage />} />
+      <Route path='/cart' element={<Cart cartData={cartData} removeCart={removeCart} />} />
+      <Route path='/products' element={<Products/>} />
+      <Route path='/contact-us' element={<ContactPage/>} />
+      <Route path='/about-us' element={<AboutPage/>} />
+    </Routes>
+  );
+}
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Home/> } />
-        <Route path='/product/:id' element={<ProductPage/>} />
-      </Routes>
+      <App />
     </BrowserRouter>    
-  </StrictMode>,
-)
+  </StrictMode>
+);

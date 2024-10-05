@@ -1,11 +1,13 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect,  useRef } from 'react';
 import '../index.css';
 import { productData } from '../data/Data';
 import { Link } from 'react-router-dom';
 
-function Product() {
-  let [bgChg, setBgChg] = useState({});
+
+
+function Product({addToCart}) {
   const productRefs = useRef([]);
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -27,37 +29,44 @@ function Product() {
     return () => observer.disconnect();
   }, []);
 
+  const pDefault=(e)=>{
+    e.preventDefault();
+  }
+
+
   const productList = productData.map((c, i) => {
+
+
     return (
       <Link to={`/product/${i}`} key={c.productId}>
         <section
           ref={(el) => (productRefs.current[i] = el)} 
           data-index={i} 
-          onMouseEnter={() => setBgChg({ ...bgChg, [c.productId]: true })}
-          onMouseLeave={() => setBgChg({ ...bgChg, [c.productId]: false })}
-          className={`flex flex-col justify-center gap-y-5 hover:scale-110 hover:shadow-[rgba(0,0,0,0.6)] hover:shadow-2xl cursor-pointer product-font opacity-0 transition-opacity duration-700 ease-in-out`}
+          className={`flex flex-col justify-center gap-y-5 hover:scale-105 hover:shadow-[rgba(0,0,0,0.6)] hover:shadow-2xl cursor-pointer product-font opacity-0 transition-opacity duration-700 ease-in-out`}
         >
-          <div className={`p-4 ${bgChg[c.productId] ? c.productBg : ''}`}>
+          <div className='p-4'>
             <img
               loading='lazy'
-              className='w-[320px] h-[420px]'
+              className='w-full h-full'
               src={`/productimg/${c.productImg}`}
             />
           </div>
           <div className='w-full pl-2'>
             <h1 className='text-xl'>{c.productName}</h1>
-            <div className='flex items-center w-full my-1 gap-2'>
+            <div className='flex items-center w-full my-1 gap-2 flex-wrap'>
               <span className='p-1.5 text-lg bg-red-500 text-white'>20% OFF</span>
               <h1 className='text-xl text-red-600 font-bold'>
-                PKR {c.productPrice-200}
+                PKR {c.productPrice - c.productSale}
               </h1>
               <h1 className='text-xl line-through text-[rgba(0,0,0,0.4)] font-bold'>
                 PKR {c.productPrice}
               </h1>
             </div>
             <div className='flex 2xl:justify-start xl:justify-start lg:justify-start md:justify-center sm:justify-center esm:justify-center pr-2'>
-              <button className='my-2 p-2.5 2xl:w-[40%] xl:w-[40%] lg:w-[40%] md:w-full sm:w-full esm:w-full font-semibold border border-black transition-all duration-300 hover:bg-black hover:text-white'>
-                Add to Cart
+            <button type='button' onClick={(e) => { 
+              pDefault(e);
+              addToCart(i); }}
+              className='my-2 p-2.5 2xl:w-[40%] xl:w-[40%] lg:w-[40%] md:w-full sm:w-full esm:w-full font-semibold border border-black transition-all duration-300 hover:bg-black hover:text-white'>                Add to Cart
               </button>
             </div>
           </div>
