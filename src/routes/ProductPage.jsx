@@ -41,7 +41,6 @@ function ProductPage() {
               <Header shCart={shCart} setShCart={setShCart} smNav={smNav}/>
               <Productrender  viewForm={viewForm} id={id}/>
               {isForm&&<Userform formRef={formRef} />}
-              <Review/>
             </>
             }
 
@@ -49,7 +48,7 @@ function ProductPage() {
 
           {shSmNav?
             <div onClick={smNav} className='w-full h-[85vh] absolute top-[120px] flex justify-end backdrop-blur-sm overflow-y-hidden'>
-              <div onClick={smNavClick} className='w-[50%] h-full bg-white border border-[rgba(0,0,0,0.5)] rounded-lg slide-in'>
+              <div onClick={smNavClick} className='w-[50%] h-full bg-white border border-solid rounded-lg slide-in'>
                 <ul className='w-full h-full text-black text-center text-[1rem] mt-8 flex flex-col  items-center'>
                   <Link to='/'><li className='py-5 underline-animation-sm'>Home</li></Link>
                   <Link to='/'><li className='py-5 underline-animation-sm'>Products</li></Link>
@@ -73,15 +72,16 @@ function Productrender({id,viewForm}){
 
   let [desDrop,setDesDrop]=useState(false)
   let [noteDrop,setNoteDrop]=useState(false)
+  let [revDropdown,setRevDropdown]=useState(false)
 
   return(
 
     <main className='w-full'>
-      <section className='w-full h-full flex pt-20 text-black justify-center gap-x-10 gap-y-10 flex-wrap'>
-        <div className={`w-[350px] h-[550px] p-5 ${productData[id].productBg}`}>
+      <section className='w-full h-full flex pt-20 text-black  gap-x-10 gap-y-10 flex-wrap 2xl:justify-center xl:justify-center lg:justify-center md:justify-start sm:justify-start esm:justify-start'>
+        <div className={`w-[350px] h-[550px] p-5 2xl:mx-0 xl:mx-0 lg:mx-0 md:mx-auto sm:mx-auto esm:mx-auto ${productData[id].productBg}`}>
           <img className='mx-auto' loading='lazy' alt={`${productData[id].productName}`} src={`/productimg/${productData[id].productImg}`}/>
         </div>
-        <section className='w-[40%] h-full ml-10 flex flex-col gap-y-6'>
+        <section className='2xl:w-[40%] xl:w-[40%] lg:w-[40%] md:w-[50%] sm:w-[100%] h-full ml-10 flex flex-col gap-y-4'>
           <div className='flex gap-y-1 flex-col'>
             <h1 className='text-[2rem]'>{productData[id].productName}</h1>
             <p className='text-2xl text-[rgba(0,0,0,0.6)]'>{productData[id].productTagline}</p>
@@ -92,7 +92,7 @@ function Productrender({id,viewForm}){
               <h2 className='text-4xl text-[rgba(0,0,0,0.4)] line-through'>PKR,{productData[id].productPrice}</h2>
             </div>
           </div>
-          <hr className='border-[rgba(0,0,0,0.3)]'/>
+          <hr className='border-[rgba(0,0,0,0.3)] 2xl:w-auto xl:w-auto lg:w-auto md:w-[100%] sm:w-[70%] esm:w-[70%]'/>
           <div>
             <button className='w-[60%] border-2 border-[rgba(0,0,0,0.9)] p-3 rounded-sm text-lg transition-all duration-300 hover:bg-black my-4 hover:text-white outline-none'>Buy Now &gt;&gt;</button>
           </div>
@@ -103,45 +103,58 @@ function Productrender({id,viewForm}){
           <div className='flex flex-col gap-y-1 flex-wrap'>
             <h1 className='text-lg font-bold'>Main Accords : </h1>
             <p className='text-lg font-bold text-[rgba(0,0,0,0.5)]'>Inspired By {productData[id].productIns}</p>
-            <div className='w-[70%]'>
-              <p className='text-wrap text-lg text-[rgba(0,0,0,0.8)]'>{productData[id].productAccords}</p>
+            <div className='2xl:w-[70%] xl:w-[70%] lg:w-[70%] md:w-[80%] sm:w-[85%] esm:w-[95%]'>
+              <p className='text-wrap text-md text-[rgba(0,0,0,0.8)]'>{productData[id].productAccords}</p>
             </div>
+          </div>
+          <div className='flex gap-1 items-center'>
+            <h1 className='text-lg font-bold'>Size :</h1>
+            <p className='text-[rgba(0,0,0,0.8)] '>{productData[id].productSize}</p>
           </div>
         </section>
         <section className='w-full'>
-           <hr className='w-[70%] mx-auto border-[rgba(0,0,0,0.3)]'/>
-            <div onClick={()=>{setDesDrop(!desDrop)}} className={`w-[80%] my-4 text-xl overflow-hidden mx-auto px-20 cursor-pointer transition-all duration-300 ${desDrop? 'h-8': 'max-h-[1000px]'}`}>
-              <h1 className='flex gap-4 items-center font-bold'>Description {!desDrop? <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 7C12.2652 7 12.5196 7.10536 12.7071 7.29289L19.7071 14.2929C20.0976 14.6834 20.0976 15.3166 19.7071 15.7071C19.3166 16.0976 18.6834 16.0976 18.2929 15.7071L12 9.41421L5.70711 15.7071C5.31658 16.0976 4.68342 16.0976 4.29289 15.7071C3.90237 15.3166 3.90237 14.6834 4.29289 14.2929L11.2929 7.29289C11.4804 7.10536 11.7348 7 12 7Z" fill="#000000"/></svg>   : <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.29289 8.29289C4.68342 7.90237 5.31658 7.90237 5.70711 8.29289L12 14.5858L18.2929 8.29289C18.6834 7.90237 19.3166 7.90237 19.7071 8.29289C20.0976 8.68342 20.0976 9.31658 19.7071 9.70711L12.7071 16.7071C12.3166 17.0976 11.6834 17.0976 11.2929 16.7071L4.29289 9.70711C3.90237 9.31658 3.90237 8.68342 4.29289 8.29289Z" fill="#000000"/></svg>} </h1>
-              <div className='p-5'>
-                <h1 className='text-2xl font-semibold'>Description : </h1>
+           <hr className='2xl:w-[70%] xl:w-[70%] lg:w-[70%] md:w-[85%] sm:w-[85%] esm:w-[85%] mx-auto border-[rgba(0,0,0,0.3)]'/>
+            <div onClick={()=>{setDesDrop(!desDrop)}} className={`w-[80%] my-2 text-lg overflow-hidden mx-auto  cursor-pointer  ${desDrop? 'max-h-[1000px]': 'h-8'} 2xl:px-20 xl:px-20 lg:px-14 md:px-2 sm:px-1 esm:px-0`}>
+              <h1 className='w-full px-2 flex gap-4 items-center justify-between font-bold'>Description {desDrop? <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 7C12.2652 7 12.5196 7.10536 12.7071 7.29289L19.7071 14.2929C20.0976 14.6834 20.0976 15.3166 19.7071 15.7071C19.3166 16.0976 18.6834 16.0976 18.2929 15.7071L12 9.41421L5.70711 15.7071C5.31658 16.0976 4.68342 16.0976 4.29289 15.7071C3.90237 15.3166 3.90237 14.6834 4.29289 14.2929L11.2929 7.29289C11.4804 7.10536 11.7348 7 12 7Z" fill="#000000"/></svg>   : <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.29289 8.29289C4.68342 7.90237 5.31658 7.90237 5.70711 8.29289L12 14.5858L18.2929 8.29289C18.6834 7.90237 19.3166 7.90237 19.7071 8.29289C20.0976 8.68342 20.0976 9.31658 19.7071 9.70711L12.7071 16.7071C12.3166 17.0976 11.6834 17.0976 11.2929 16.7071L4.29289 9.70711C3.90237 9.31658 3.90237 8.68342 4.29289 8.29289Z" fill="#000000"/></svg>} </h1>
+              <div className='p-5 '>
+                <h1 className='text-2xl font-semibold'>{productData[id].productName} by Crush Fragrances : </h1>
                 <div className='p-5'>
-                  <p dangerouslySetInnerHTML={{ __html: productData[id].productDes }} ></p>
+                  <p dangerouslySetInnerHTML={{ __html: productData[id].productDes }} className='text-sm' ></p>
                 </div>
               </div>
             </div>
-            <hr className='w-[70%] mx-auto border-[rgba(0,0,0,0.3)]'/>
-            <div onClick={()=>{setNoteDrop(!noteDrop)}} className={`w-[80%] my-4 text-xl mx-auto px-20 overflow-hidden cursor-pointer transition-all duration-300 ${noteDrop? 'h-8' : 'max-h-[1000px]'}`}>
-              <h1 className='flex gap-4 items-center font-bold'>Notes {!noteDrop? <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 7C12.2652 7 12.5196 7.10536 12.7071 7.29289L19.7071 14.2929C20.0976 14.6834 20.0976 15.3166 19.7071 15.7071C19.3166 16.0976 18.6834 16.0976 18.2929 15.7071L12 9.41421L5.70711 15.7071C5.31658 16.0976 4.68342 16.0976 4.29289 15.7071C3.90237 15.3166 3.90237 14.6834 4.29289 14.2929L11.2929 7.29289C11.4804 7.10536 11.7348 7 12 7Z" fill="#000000"/></svg>   : <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.29289 8.29289C4.68342 7.90237 5.31658 7.90237 5.70711 8.29289L12 14.5858L18.2929 8.29289C18.6834 7.90237 19.3166 7.90237 19.7071 8.29289C20.0976 8.68342 20.0976 9.31658 19.7071 9.70711L12.7071 16.7071C12.3166 17.0976 11.6834 17.0976 11.2929 16.7071L4.29289 9.70711C3.90237 9.31658 3.90237 8.68342 4.29289 8.29289Z" fill="#000000"/></svg>} </h1>
-              <div className='p-10'>
+            <hr className='2xl:w-[70%] xl:w-[70%] lg:w-[70%] md:w-[85%] sm:w-[85%] esm:w-[85%] mx-auto border-[rgba(0,0,0,0.3)]'/>
+            <div onClick={()=>{setNoteDrop(!noteDrop)}} className={`w-[80%] my-2 text-lg mx-auto px-20 overflow-hidden cursor-pointer ${noteDrop? 'max-h-[1000px]' : 'h-8' }  2xl:px-20 xl:px-20 lg:px-14 md:px-2 sm:px-1 esm:px-0`}>
+              <h1 className='w-full px-2 flex gap-4 items-center justify-between font-bold'>Notes {noteDrop? <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 7C12.2652 7 12.5196 7.10536 12.7071 7.29289L19.7071 14.2929C20.0976 14.6834 20.0976 15.3166 19.7071 15.7071C19.3166 16.0976 18.6834 16.0976 18.2929 15.7071L12 9.41421L5.70711 15.7071C5.31658 16.0976 4.68342 16.0976 4.29289 15.7071C3.90237 15.3166 3.90237 14.6834 4.29289 14.2929L11.2929 7.29289C11.4804 7.10536 11.7348 7 12 7Z" fill="#000000"/></svg>   : <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.29289 8.29289C4.68342 7.90237 5.31658 7.90237 5.70711 8.29289L12 14.5858L18.2929 8.29289C18.6834 7.90237 19.3166 7.90237 19.7071 8.29289C20.0976 8.68342 20.0976 9.31658 19.7071 9.70711L12.7071 16.7071C12.3166 17.0976 11.6834 17.0976 11.2929 16.7071L4.29289 9.70711C3.90237 9.31658 3.90237 8.68342 4.29289 8.29289Z" fill="#000000"/></svg>} </h1>
+              <div className='p-2'>
                 <h1 className='text-2xl font-semibold'>Notes : </h1>
-                <div className='p-10 w-[90%] h-full flex flex-col gap-y-5  '>
-                  {/* <img src={`/productimg/${productData[id].productNotesimg}`}/> */}
-                  <div className='flex flex-nowrap gap-1'>
-                    <h1 className='font-bold'>Top Notes :</h1>
-                    <p className='text-wrap'>Calabran bergamot , Pepper </p>
+                <div className='p-5 mt-5 w-[90%] h-full flex flex-col gap-y-3  '>
+                  <div className='flex flex-nowrap gap-8 items-center'>
+                    <h1 className='w-[45%] text-nowrap text-end font-bold text-[1rem]'>Top Notes :</h1>
+                    <p className='w-[55%] text-wrap text-[rgba(0,0,0,0.5)] text-sm'>{productData[id].productTNotes}</p>
                   </div>
-                  <div className='flex flex-nowrap gap-1'>
-                    <h1 className='font-bold'>Middle Notes : </h1>
-                    <p className='text-wrap'>Sichuan Pepper , Lavender , Pink Pepper , Vetiver , Patchouli ,Geranium Elemi </p>
+                  <div className='flex  flex-nowrap gap-8 items-center'>
+                    <h1 className='w-[45%] text-nowrap text-end font-bold text-[1rem]'>Middle Notes : </h1>
+                    <p className='w-[55%] text-wrap text-[rgba(0,0,0,0.5)]  text-sm'>{productData[id].productMNotes} </p>
                   </div>
-                  <div className='flex flex-nowrap gap-1'>
-                    <h1 className='font-bold'>Base Notes :</h1>
-                    <p className='text-wrap'>Cedar , Sugar , Labdanum</p>
+                  <div className='flex flex-nowrap gap-8 items-center'>
+                    <h1 className='w-[45%] text-nowrap text-end font-bold text-[1rem]'>Base Notes :</h1>
+                    <p className='w-[55%] text-wrap text-[rgba(0,0,0,0.5)]  text-sm'>{productData[id].productBNotes}</p>
                   </div>
                 </div>
               </div>
             </div>
-            <hr className='w-[70%] mx-auto border-[rgba(0,0,0,0.3)]'/>
+            <hr className='2xl:w-[70%] xl:w-[70%] lg:w-[70%] md:w-[85%] sm:w-[85%] esm:w-[85%] mx-auto border-[rgba(0,0,0,0.3)]'/>
+            <div onClick={()=>{setRevDropdown(!revDropdown)}} className={`w-[80%] my-2 text-lg mx-auto px-20 overflow-hidden cursor-pointer  ${revDropdown? 'max-h-[1000px]' : 'h-8' }  2xl:px-20 xl:px-20 lg:px-14 md:px-2 sm:px-1 esm:px-0`}>
+              <h1 className='w-full px-2 flex gap-4 items-center justify-between font-bold'>Reviews (0) {noteDrop? <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 7C12.2652 7 12.5196 7.10536 12.7071 7.29289L19.7071 14.2929C20.0976 14.6834 20.0976 15.3166 19.7071 15.7071C19.3166 16.0976 18.6834 16.0976 18.2929 15.7071L12 9.41421L5.70711 15.7071C5.31658 16.0976 4.68342 16.0976 4.29289 15.7071C3.90237 15.3166 3.90237 14.6834 4.29289 14.2929L11.2929 7.29289C11.4804 7.10536 11.7348 7 12 7Z" fill="#000000"/></svg>   : <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.29289 8.29289C4.68342 7.90237 5.31658 7.90237 5.70711 8.29289L12 14.5858L18.2929 8.29289C18.6834 7.90237 19.3166 7.90237 19.7071 8.29289C20.0976 8.68342 20.0976 9.31658 19.7071 9.70711L12.7071 16.7071C12.3166 17.0976 11.6834 17.0976 11.2929 16.7071L4.29289 9.70711C3.90237 9.31658 3.90237 8.68342 4.29289 8.29289Z" fill="#000000"/></svg>} </h1>
+              <div className='w-full flex justify-end my-5'>
+                <button className='bg-black p-3 text-white transition-all duration-300 rounded-md border border-[rgba(0,0,0,0.6)] hover:text-black hover:bg-white'>Write a Review</button>
+              </div>
+              <div className='w-full'>
+                <p className='text-center'>No reviews yet.</p>
+              </div>
+            </div>
+            <hr className='2xl:w-[70%] xl:w-[70%] lg:w-[70%] md:w-[85%] sm:w-[85%] esm:w-[85%] mx-auto border-[rgba(0,0,0,0.3)]'/>
         </section>
       </section>
     </main>
@@ -235,18 +248,6 @@ function Userform({formRef}){
 };
 
 
-function Review(){
-  let [revDropdown,setRevDropdown]=useState(false)
-  return(
-    <section className='w-full text-white p-10'>
-      <div onClick={()=>setRevDropdown(!revDropdown)} className='w-full flex justify-center items-center gap-4 border border-[rgba(255,255,255,0.3)] rounded-full p-5 cursor-pointer '>
-        <button className='flex gap-3 mb-2 2xl:text-[1.5rem] xl:text[1.4rem] lg:text-[1.3rem] md:text-[1.2rem] sm:text-[1.1rem] esm:text-[1rem] items-center' onClick={()=>setRevDropdown(!revDropdown)}>Check out Reviews {revDropdown?<svg width="20px" height="20px" viewBox="0 0 1024 1024" className="icon" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M903.232 768l56.768-50.432L512 256l-448 461.568 56.768 50.432L512 364.928z" fill="#f4f4f4"/></svg>:<svg width="20px" height="20px" viewBox="0 0 1024 1024" className="icon" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#f4f4f4"/></svg>} </button>
-        <hr className='2xl:w-[60%] xl:w-[55%] lg:w-[50%] md:w-[45%] sm:w-[35%] esm:w-[10%]'/>
-        <button className='2xl:p-3 xl:p-3 lg:p-3 md:p-3 sm:p-2 sm:px-2 esm:p-2 2xl:text-[1.2rem] xl:text-[1.2rem] lg:text-[1.1rem] md:text-[1.1rem] sm:text-[0.9rem] esm:text-[0.9rem] shadow-2xl rounded-2xl border border-[rgba(255,255,255,0.3)] bg-[#461111] transition-all hover:bg-transparent'>Write a Review</button>
-      </div>
-    </section>
-  )
-}
-
 
 export default ProductPage
+

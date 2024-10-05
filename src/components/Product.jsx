@@ -49,7 +49,7 @@ function Product() {
             <div className='flex items-center w-full my-1 gap-2'>
               <span className='p-1.5 text-lg bg-red-500 text-white'>20% OFF</span>
               <h1 className='text-xl text-red-600 font-bold'>
-                PKR {c.productPrice / -200}
+                PKR {c.productPrice-200}
               </h1>
               <h1 className='text-xl line-through text-[rgba(0,0,0,0.4)] font-bold'>
                 PKR {c.productPrice}
