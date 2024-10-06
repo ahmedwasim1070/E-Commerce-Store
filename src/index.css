@@ -69,6 +69,47 @@
     animation: slideIn 0.2s ease-out forwards;
 }
 
+
+
+
+.bg-perfume-1{
+    background-image: url(/productimg/perfume-1-bg.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+}
+
+.bg-perfume-2{
+    background-image: url(/productimg/perfume-2-bg.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+}
+.bg-perfume-3{
+    background-image: url(/productimg/perfume-3-bg.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+}
+.bg-perfume-4{
+    background-image: url(/productimg/perfume-4-bg.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+}
+.bg-perfume-5{
+    background-image: url(/productimg/perfume-5-bg.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+}
+.bg-perfume-6{
+    background-image: url(/productimg/perfume-6-bg.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+}
+
   
   .fade-in {
     opacity: 1;
