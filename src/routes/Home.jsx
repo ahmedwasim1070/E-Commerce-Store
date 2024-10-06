@@ -84,7 +84,6 @@ function Home({idxPr,setIdxPr,addToCart}) {
 // Main Slide Show Menu Bar
 
 function Hero({idxPr,setIdxPr,addToCart}){
-  const [isSmall, setIsSmall] = useState(false);
   let [fade,setFade]=useState('fade-in');
 
 
@@ -96,17 +95,9 @@ function Hero({idxPr,setIdxPr,addToCart}){
         setFade('fade-in');
       }, 300); 
     }, 5000); 
-
-    const handleResize = () => {
-      setIsSmall(window.innerWidth < 370);
-    };
-
-    window.addEventListener('resize', handleResize);
-    handleResize();
     
     return () => {
       clearInterval(interval);
-      window.removeEventListener('resize', handleResize); 
     }
   }, [idxPr]);
 
@@ -143,17 +134,16 @@ function Hero({idxPr,setIdxPr,addToCart}){
           </button>
         </div>
       </div>
-      <div className='flex items-end 2xl:relative 2xl:left-0 2xl:top-0 2xl:w-[8%] 2xl:h-[55%] xl:relative xl:left-0 xl:top-0 xl:w-[8%] xl:h-[55%] lg:relative lg:top-0 lg:left-0 lg:w-[8%] lg:h-[55%] md:absolute md:left-[75%] md:top-[80%] md:w-full md:h-20 sm:absolute sm:top-[75%] sm:left-[75%] sm:h-20 sm:w-full esm:absolute esm:w-full esm:h-20 esm:top-[85%] esm:left-[75%]'>
-       {!isSmall&& 
+      <div className='flex items-end 2xl:relative 2xl:left-0 2xl:top-0 2xl:w-[8%] 2xl:h-[55%] xl:relative xl:left-0 xl:top-0 xl:w-[8%] xl:h-[55%] lg:relative lg:top-0 lg:left-0 lg:w-[8%] lg:h-[55%] md:absolute md:left-[75%] md:top-[80%] md:w-full md:h-20 sm:absolute sm:top-[75%] sm:left-[75%] sm:h-20 sm:w-full esm:absolute esm:w-full esm:h-20 esm:top-[86%] esm:left-[75%]'>
        <div className='w-full'>
-          <p className='2xl:text-[1.2rem] 2xl:my-0 xl:text-[1rem] xl:my-0 lg:text-[1rem] lg:my-1 md:text-[1rem] md:my-1 sm:text-[1rem] sm:my-1 esm:text-[1rem] esm:my-1'>Details :</p>
-          <h1 className={`2xl:text-2xl 2xl:my-2 xl:text-[1.4rem] xl:my-2 lg:text-[1.2rem] lg:my-1 md:text-[1.3rem] sm:text-[1.3rem] esm:text-[1.2rem]`}>Rs: {productData[idxPr].productPrice - productData[idxPr].productSale} <p className='line-through text-red-950'>Was: {productData[idxPr].productPrice}</p></h1>
-          <p className='2xl:text-[1rem] 2xl:my-0 xl:text-[1rem] xl:my-0 lg:text-[0.9rem] lg:my-0 md:text-[0.9rem] md:my-1 sm:text-[0.9rem] sm:my-1 esm:text-[0.8rem] esm:my-1 '>{productData[idxPr].productSize}</p>
-          <div className=' flex items-center gap-3 2xl:mt-10 xl:mt-10 lg:mt-5 lg:gap-2 md:gap-2 md:mt-3 sm:gap-2 sm:mt-3 esm:mt-5 esm:gap-4'>
+          <p className='2xl:text-[1.2rem] 2xl:my-0 xl:text-[1rem] xl:my-0 lg:text-[1rem] lg:my-1 md:text-[1rem] md:my-1 sm:text-[1rem] sm:my-1 esm:text-[1rem] esm:my-0'>Details :</p>
+          <h1 className={`2xl:text-2xl 2xl:my-2 xl:text-[1.4rem] xl:my-2 lg:text-[1.2rem] lg:my-1 md:text-[1.3rem] sm:text-[1.3rem] esm:text-[1.2rem]`}>Rs: {productData[idxPr].productPrice - productData[idxPr].productSale} <p className='line-through text-gray-300'>Was: {productData[idxPr].productPrice}</p></h1>
+          <p className='2xl:text-[1rem] 2xl:my-0 xl:text-[1rem] xl:my-0 lg:text-[0.9rem] lg:my-0 md:text-[0.9rem] md:my-1 sm:text-[0.9rem] sm:my-1 esm:text-[0.8rem] esm:my-0 '>{productData[idxPr].productSize}</p>
+          <div className=' flex items-center gap-3 2xl:mt-10 xl:mt-10 lg:mt-5 lg:gap-2 md:gap-2 md:mt-3 sm:gap-2 sm:mt-3 esm:mt-2 esm:gap-4'>
             <button onClick={()=>changeIdx('prev')} className='border border-solid rounded-xl transition-all duration-300 hover:bg-[rgba(0,0,0,0.3)] 2xl:p-1 xl:p-1 lg:p-0.5 md:p-0.8 sm:p-0.8 esm:p-1'><svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 7L10 12L15 17" stroke="#f3f3f3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></button>
             <button onClick={()=>changeIdx('next')} className='border border-solid rounded-xl transition-all duration-300 hover:bg-[rgba(0,0,0,0.3)] 2xl:p-1 xl:p-1 lg:p-0.5 md:p-0.8 sm:p-0.8 esm:p-1'><svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 7L15 12L10 17" stroke="#f3f3f3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg></button>
           </div>
-        </div>}
+        </div>
       </div>
     </section>
   )
