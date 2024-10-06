@@ -3,30 +3,9 @@ import '../index.css';
 
 
 function Contact() {
-  const [notification, setNotification] = useState(''); // To store notification message
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
-
-    // Collect form data
-    const formData = new FormData(event.target);
-
-    // Send form data to Netlify using fetch
-    try {
-      await fetch('/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams(formData).toString(),
-      });
-
-      setNotification('Message sent successfully!'); // Display success notification
-    } catch (error) {
-      setNotification('Failed to send the message. Please try again.'); // Display error notification
-    }
-
-    // Optional: Reset the form if needed
+    event.preventDefault(); 
     event.target.reset();
   };
 
@@ -35,7 +14,6 @@ function Contact() {
       <div className='m-10'>
         <h1 className='text-5xl text-center'>Contact Us</h1>
       </div>
-      {notification && <p className='text-center text-green-500'>{notification}</p>}
       <form name='Contact' method='POST'  onSubmit={handleSubmit} data-netlify-honeypot="bot-field"  className='w-full flex  flex-wrap gap-y-10 my-20 2xl:justify-center xl:justify-start lg:justify-start md:justify-start sm:justify-start esm:justify-start'>
         <input className='hidden' name='bot-field'/>
         <div className='flex items-center gap-2 justify-center 2xl:w-[50%] xl:w-[55%] lg:w-[65%] md:w-[70%] sm:w-[75%] esm:w-[95%] '>
@@ -62,3 +40,4 @@ function Contact() {
 
 export default Contact
 
+/* HTML: <div class="loader"></div> */

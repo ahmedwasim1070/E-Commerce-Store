@@ -92,7 +92,7 @@ export let productData=[
     {
         'productId': 6,
         'productName': 'Velvet Bloom',
-        'productPrice': '2000',
+        'productPrice': '2300',
         'productSale': '301',
         'productImg': 'perfume-6.webp',
         'productTagline': 'Let your radiance bloom.',

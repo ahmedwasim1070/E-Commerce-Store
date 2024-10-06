@@ -69,47 +69,6 @@
     animation: slideIn 0.2s ease-out forwards;
 }
 
-
-
-
-.bg-perfume-1{
-    background-image: url(/productimg/perfume-1-bg.webp);
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 10px;
-}
-
-.bg-perfume-2{
-    background-image: url(/productimg/perfume-2-bg.webp);
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 10px;
-}
-.bg-perfume-3{
-    background-image: url(/productimg/perfume-3-bg.webp);
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 10px;
-}
-.bg-perfume-4{
-    background-image: url(/productimg/perfume-4-bg.webp);
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 10px;
-}
-.bg-perfume-5{
-    background-image: url(/productimg/perfume-5-bg.webp);
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 10px;
-}
-.bg-perfume-6{
-    background-image: url(/productimg/perfume-6-bg.webp);
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 10px;
-}
-
   
   .fade-in {
     opacity: 1;
@@ -121,27 +80,17 @@
     transition: opacity 0.3s ease-out;
   }
 
-  /* CSS animation for slide up */
-@keyframes slide-up {
-    from {
-      opacity: 0;
-      transform: translateY(100px); /* Starts 100px below */
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0); /* Ends at normal position */
-    }
-  }
-  
-  /* Add class for the animation */
-  .slide-up {
-    opacity: 0;
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-  }
-  
-  .slide-up-visible {
-    animation: slide-up 0.5s forwards ease-out; /* Animation triggers */
-  }
 
-
+  .loader {
+    width: 15px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    animation: l5 1s infinite linear alternate;
+  }
+  @keyframes l5 {
+      0%  {box-shadow: 20px 0 #000, -20px 0 #0002;background: #000 }
+      33% {box-shadow: 20px 0 #000, -20px 0 #0002;background: #0002}
+      66% {box-shadow: 20px 0 #0002,-20px 0 #000; background: #0002}
+      100%{box-shadow: 20px 0 #0002,-20px 0 #000; background: #000 }
+  }
 
