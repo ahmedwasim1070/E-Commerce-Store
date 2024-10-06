@@ -36,7 +36,7 @@ function Contact() {
         <h1 className='text-5xl text-center'>Contact Us</h1>
       </div>
       {notification && <p className='text-center text-green-500'>{notification}</p>}
-      <form name='Contact' method='POST' data-netlify="true" onSubmit={handleSubmit} data-netlify-honeypot="bot-field"  className='w-full flex  flex-wrap gap-y-10 my-20 2xl:justify-center xl:justify-start lg:justify-start md:justify-start sm:justify-start esm:justify-start'>
+      <form name='Contact' method='POST'  onSubmit={handleSubmit} data-netlify-honeypot="bot-field"  className='w-full flex  flex-wrap gap-y-10 my-20 2xl:justify-center xl:justify-start lg:justify-start md:justify-start sm:justify-start esm:justify-start'>
         <input className='hidden' name='bot-field'/>
         <div className='flex items-center gap-2 justify-center 2xl:w-[50%] xl:w-[55%] lg:w-[65%] md:w-[70%] sm:w-[75%] esm:w-[95%] '>
           <label className='text-lg'>Name :</label>

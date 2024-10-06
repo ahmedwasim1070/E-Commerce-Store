@@ -179,24 +179,24 @@ function Userform({formRef,id}){
   
   return(
     <section className='w-full p-10'>
-      <form ref={formRef} className='border border-solid shadow-2xl p-10 my-10 rounded-2xl flex flex-col gap-10 text-black'>
+      <form name='order' method='POST' data-netlify='true' onSubmit='submit' ref={formRef} className='border border-solid shadow-2xl p-10 my-10 rounded-2xl flex flex-col gap-10 text-black'>
         <h1 className='text-center 2xl:text-[3rem] xl:text-[3rem] lg:text-[2.5rem] md:text-[2.5rem] sm:text-[2rem] esm:text-[2rem]'>Enter Your Details</h1>
         <hr className='w-[80%] mx-auto'/>
         <div className='flex items-center gap-5 flex-wrap'>
           <label className='text-[1.3rem]'>Name :</label>
-          <input type='text' required className='2xl:w-[30%] xl:w-[30%] lg:w-[30%] md:w-[80%] sm:w-[80%] esm:w-[80%] bg-transparent border border-[rgba(0,0,0,0.6)] rounded-lg p-2  outline-none' placeholder='Enter Your Name'/>
+          <input name='name' type='text' required className='2xl:w-[30%] xl:w-[30%] lg:w-[30%] md:w-[80%] sm:w-[80%] esm:w-[80%] bg-transparent border border-[rgba(0,0,0,0.6)] rounded-lg p-2  outline-none' placeholder='Enter Your Name'/>
         </div>
         <div className='flex items-center gap-5 flex-wrap'>
           <label className='text-[1.3rem]'>Phone :</label>
-          <input type='tel' required className='2xl:w-[30%] xl:w-[30%]  w-[85%] bg-transparent border border-[rgba(0,0,0,0.6)] rounded-lg p-2  outline-none' placeholder='03001112233'/>
+          <input name='phone' type='tel' required className='2xl:w-[30%] xl:w-[30%]  w-[85%] bg-transparent border border-[rgba(0,0,0,0.6)] rounded-lg p-2  outline-none' placeholder='03001112233'/>
         </div>
         <div className='flex items-center gap-5 flex-wrap'>
           <label className='text-[1.3rem]'>Email :</label>
-          <input type='email' required className='2xl:w-[40%] xl:w-[40%] lg:w-[65%] sm:w-[75%] esm:w-[80%] bg-transparent border border-[rgba(0,0,0,0.6)] rounded-lg p-2  outline-none' placeholder='abc@gmail.com'/>
+          <input name='email' type='email' required className='2xl:w-[40%] xl:w-[40%] lg:w-[65%] sm:w-[75%] esm:w-[80%] bg-transparent border border-[rgba(0,0,0,0.6)] rounded-lg p-2  outline-none' placeholder='abc@gmail.com'/>
         </div>
         <div className='flex items-center gap-5 flex-wrap'>
           <label className='text-[1.3rem]'>Province :</label>
-          <select value={selectedProvince} onChange={handleProvinceChange}  name='province' required className='2xl:w-[30%] xl:w-[30%] lg:w-[30%] md:w-[80%] sm:w-[80%] esm:w-[80%]  border border-[rgba(0,0,0,0.6)] rounded-lg p-2  outline-none cursor-pointer bg-white '>
+          <select name='province' value={selectedProvince} onChange={handleProvinceChange} required className='2xl:w-[30%] xl:w-[30%] lg:w-[30%] md:w-[80%] sm:w-[80%] esm:w-[80%]  border border-[rgba(0,0,0,0.6)] rounded-lg p-2  outline-none cursor-pointer bg-white '>
             <option value='punjab'>Punjab</option>
             <option value='sindh'>Sindh</option>
             <option value='kpk'>Khyber Pakhtunkhwa (KPK)</option>
@@ -207,7 +207,7 @@ function Userform({formRef,id}){
         <div className='flex items-center gap-5 flex-wrap'>
           <label className='text-[1.3rem]'>City :</label>
           <div className='w-[80%] flex flex-col gap-y-2'>
-            <select required className='2xl:w-[30%] xl:w-[30%] lg:w-[30%] md:w-[75%] sm:w-[75%] esm:w-[75%]  border border-[rgba(0,0,0,0.6)] rounded-lg p-2  outline-none cursor-pointer bg-white '>
+            <select name='city'  required className='2xl:w-[30%] xl:w-[30%] lg:w-[30%] md:w-[75%] sm:w-[75%] esm:w-[75%]  border border-[rgba(0,0,0,0.6)] rounded-lg p-2  outline-none cursor-pointer bg-white '>
               {
                 city.map((c)=>{
                   return(
@@ -221,7 +221,7 @@ function Userform({formRef,id}){
         </div>
         <div className='flex items-center gap-5 flex-wrap'>
           <label className='text-[1.3rem]'>Address :</label>
-          <input type='text' required className='2xl:w-[45%] xl:w-[45%] lg:w-[45%] md:w-[80%] sm:w-[80%] esm:w-[80%] bg-transparent border border-[rgba(0,0,0,0.6)] rounded-lg p-2 pb-20  outline-none' placeholder='Enter you detailed address'/>
+          <input name='address' type='text' required className='2xl:w-[45%] xl:w-[45%] lg:w-[45%] md:w-[80%] sm:w-[80%] esm:w-[80%] bg-transparent border border-[rgba(0,0,0,0.6)] rounded-lg p-2 pb-20  outline-none' placeholder='Enter you detailed address'/>
         </div>
         <div className='flex items-center gap-5 flex-wrap'>
           <label className='text-[1.3rem]'>Quantity :</label>
