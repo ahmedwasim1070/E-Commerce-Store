@@ -18,7 +18,7 @@ function Cart({cartData,removeCart}) {
   return (
     <main className=' w-full h-[100vh] overflow-x-hidden'>
       <div className='w-full mx-auto fl:container'>
-        <Header smNav={smNav}/>
+        <Header cartData={cartData} smNav={smNav}/>
         {cartData.length==0?
         <><p className='text-center text-2xl mt-20 font-bold'>You did not carted any item</p><p className='text-center pt-2 text-lg'>Start Carting ? </p></>: <CartProduct pDefault={pDefault} removeCart={removeCart} cartData={cartData}/> }
         {shSmNav && (

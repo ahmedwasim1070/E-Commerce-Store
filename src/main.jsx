@@ -15,7 +15,6 @@ function App() {
   const [idxPr, setIdxPr] = useState(0);
   const [cartData, setCartData] = useState([]);
 
-  // Load cartData from localStorage when the component mounts
   useEffect(() => {
     const savedCartData = localStorage.getItem('cartData');
     if (savedCartData) {
@@ -23,7 +22,6 @@ function App() {
     }
   }, []);
 
-  // Store cartData in localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('cartData', JSON.stringify(cartData));
   }, [cartData]);
@@ -44,13 +42,13 @@ function App() {
     <Routes>
       <Route 
         path='/' 
-        element={<Home idxPr={idxPr} setIdxPr={setIdxPr} addToCart={addToCart} />} 
+        element={<Home idxPr={idxPr} setIdxPr={setIdxPr} cartData={cartData} addToCart={addToCart} />} 
       />
-      <Route path='/product/:id' element={<ProductPage />} />
+      <Route path='/product/:id' element={<ProductPage cartData={cartData} />} />
       <Route path='/cart' element={<Cart cartData={cartData} removeCart={removeCart} />} />
-      <Route path='/products' element={<Products />} />
-      <Route path='/contact-us' element={<ContactPage />} />
-      <Route path='/about-us' element={<AboutPage />} />
+      <Route path='/products' element={<Products cartData={cartData} />} />
+      <Route path='/contact-us' element={<ContactPage cartData={cartData} />} />
+      <Route path='/about-us' element={<AboutPage cartData={cartData} />} />
     </Routes>
   );
 }

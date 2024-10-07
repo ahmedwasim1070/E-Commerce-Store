@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Product from '../components/Product';
 
-function Products() {
+function Products({cartData}) {
     let [shSmNav,setShSmNav]=useState(false);
     const smNav=()=>{
       setShSmNav(!shSmNav);
@@ -14,8 +14,8 @@ function Products() {
   return (
       <main className=' w-full h-[100vh] overflow-x-hidden'>
         <div className='w-full mx-auto fl:container'>
-            <Header smNav={smNav}/>
-            <Product/>
+            <Header cartData={cartData} smNav={smNav}/>
+            <Product cartData={cartData} />
             
           {shSmNav && (
             <div onClick={smNav} className='w-full h-[85vh] absolute top-[120px] flex justify-end backdrop-blur-sm overflow-y-hidden'>

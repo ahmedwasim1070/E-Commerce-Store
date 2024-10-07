@@ -7,8 +7,9 @@ import Contact from '../components/Contact';
 import About from '../components/About';
 import Footer from '../components/Footer';
 import { productData } from '../data/Data';
+import Info from '../components/Info';
 
-function Home({idxPr,setIdxPr,addToCart}) {
+function Home({idxPr,setIdxPr,addToCart,cartData}) {
 
   let [shSmNav, setShSmNav] = useState(false);
   const contactRef = useRef(null);
@@ -49,9 +50,10 @@ function Home({idxPr,setIdxPr,addToCart}) {
 
 
   return (
-    <main className=' w-full h-[100vh] overflow-x-hidden'>
+    <main className=' w-full overflow-x-hidden'>
+      <Info/>
       <div className='w-full mx-auto fl:container'>
-        <Header smNav={smNav}/>
+        <Header cartData={cartData} smNav={smNav}/>
         <Hero addToCart={addToCart} idxPr={idxPr} setIdxPr={setIdxPr} />
         <Product addToCart={addToCart}/>
         <div ref={contactRef} className="opacity-0 transition-opacity duration-1000 ease-in-out">
