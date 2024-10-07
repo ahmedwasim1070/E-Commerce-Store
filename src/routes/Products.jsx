@@ -5,7 +5,7 @@ import Product from '../components/Product';
 import Info from '../components/Info';
 
 
-function Products({cartData}) {
+function Products({cartData,addToCart}) {
     let [shSmNav,setShSmNav]=useState(false);
     const smNav=()=>{
       setShSmNav(!shSmNav);
@@ -18,7 +18,7 @@ function Products({cartData}) {
         <Info/>
         <div className='w-full mx-auto fl:container'>
             <Header cartData={cartData} smNav={smNav}/>
-            <Product cartData={cartData} />
+            <Product addToCart={addToCart} cartData={cartData} />
             
           {shSmNav && (
             <div onClick={smNav} className='w-full h-[85vh] absolute top-[120px] flex justify-end backdrop-blur-sm overflow-y-hidden'>

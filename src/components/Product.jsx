@@ -2,6 +2,8 @@ import React, { useEffect,  useRef } from 'react';
 import '../index.css';
 import { productData } from '../data/Data';
 import { Link } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -78,6 +80,7 @@ function Product({addToCart}) {
   return (
     <>
       <section className='w-full border border-solid p-10 shadow-2xl mt-10 rounded-2xl'>
+        <ToastContainer />
         <div className='w-full h-20 mb-[100px]'>
           <h1 className='text-center text-[3.5rem] text-[rgba(0,0,0,0.8)] py-2'>
             Products

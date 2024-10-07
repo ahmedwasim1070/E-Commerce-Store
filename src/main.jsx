@@ -1,6 +1,8 @@
 import { StrictMode, useState, useEffect } from 'react'; 
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
 import { productData } from './data/Data';
@@ -31,11 +33,15 @@ function App() {
     const isRepeat = cartData.some(item => item.productId === itemToAdd.productId);
     if (!isRepeat) {
       setCartData([...cartData, itemToAdd]);
+      toast.info("Item Carted Successfully")
+    }else{
+      toast.error("Item Already in the list")
     }
   };
 
   const removeCart = (i) => {
     setCartData(cartData.filter((_, index) => index !== i));
+    toast.info('Item Removed Successfully ')
   };
 
   return (
@@ -46,7 +52,7 @@ function App() {
       />
       <Route path='/product/:id' element={<ProductPage cartData={cartData} />} />
       <Route path='/cart' element={<Cart cartData={cartData} removeCart={removeCart} />} />
-      <Route path='/products' element={<Products cartData={cartData} />} />
+      <Route path='/products' element={<Products addToCart={addToCart} cartData={cartData} />} />
       <Route path='/contact-us' element={<ContactPage cartData={cartData} />} />
       <Route path='/about-us' element={<AboutPage cartData={cartData} />} />
     </Routes>
