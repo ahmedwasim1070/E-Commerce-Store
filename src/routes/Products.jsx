@@ -2,6 +2,8 @@ import React ,{useState} from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Product from '../components/Product';
+import Info from '../components/Info';
+
 
 function Products({cartData}) {
     let [shSmNav,setShSmNav]=useState(false);
@@ -13,6 +15,7 @@ function Products({cartData}) {
     }
   return (
       <main className=' w-full h-[100vh] overflow-x-hidden'>
+        <Info/>
         <div className='w-full mx-auto fl:container'>
             <Header cartData={cartData} smNav={smNav}/>
             <Product cartData={cartData} />
