@@ -256,8 +256,8 @@ function Userform({formRef,id}){
   };
   
   return(
-    <section ref={formRef} className='w-full p-10 relative'>
-      <form onSubmit={handleSubmit}  className='border border-solid shadow-2xl p-10 my-10 rounded-2xl flex flex-col gap-10 text-black'>
+    <section ref={formRef} className='w-full 2xl:p-10 xl:p-10 lg:p-10 md:p-10 sm:p-0 esm:p-0 relative'>
+      <form onSubmit={handleSubmit}  className='border border-solid shadow-2xl 2xl:p-10 xl:p-10 lg:p-10 md:p-8 sm:p-6 esm:p-4 my-10 rounded-2xl flex flex-col gap-10 text-black'>
         <ToastContainer />
         <h1 className='text-center 2xl:text-[3rem] xl:text-[3rem] lg:text-[2.5rem] md:text-[2.5rem] sm:text-[2rem] esm:text-[2rem]'>Enter Your Details</h1>
         <hr className='w-[80%] mx-auto border-[rgba(0,0,0,0.3)]'/>
