@@ -4,7 +4,6 @@ import '../index.css';
 import emailjs from 'emailjs-com';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import {productData,countryCity} from '../data/Data';
 import Header from '../components/Header';
 
@@ -193,7 +192,15 @@ function Userform({formRef,id}){
     address: '',
     quantity: 1,
     productData: productData[id].productName,
+    productTotal: 1,
   });
+  const [errorState,setErrorState]=useState({
+    name: false,
+    phone: false,
+    email: false,
+    address: false,
+
+  })
 
   const handleProvinceChange = (e) => {
     const newProvince = e.target.value;
@@ -209,6 +216,11 @@ function Userform({formRef,id}){
         setFormData({...formData,quantity: newValue})
         setInputValue(newValue);
         setProductTotal(productTotal - Number(productData[id].productPrice - productData[id].productSale));
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          productTotal:
+            (productData[id].productPrice - productData[id].productSale)*prevFormData.quantity
+        }));
       }
     } else if (e.target.name === 'pos') {
       if (inputValue < 6) {
@@ -216,6 +228,11 @@ function Userform({formRef,id}){
         setFormData({...formData,quantity: newValue})
         setInputValue(newValue);
         setProductTotal(productTotal + Number(productData[id].productPrice - productData[id].productSale));
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          productTotal:
+            (productData[id].productPrice - productData[id].productSale)*prevFormData.quantity
+        }));
       }
     }
   }
@@ -223,10 +240,56 @@ function Userform({formRef,id}){
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-  };
+  };     
 
+  
   const handleSubmit = (e) => {
+
     e.preventDefault();
+
+
+
+    let formValid=true;
+
+    let newErrorState = { ...errorState };
+
+    if (formData.name.length <= 2 || formData.name.length > 24) {
+      newErrorState.name = true;
+      formValid = false;
+    } else {
+      newErrorState.name = false;
+    }
+  
+    if (formData.phone.length !== 11) {
+      newErrorState.phone = true;
+      formValid = false;
+    } else {
+      newErrorState.phone = false;
+    }
+  
+    if (formData.email.length >= 48) {
+      newErrorState.email = true;
+      formValid = false;
+    } else {
+      newErrorState.email = false;
+    }
+  
+    if (formData.address.length <= 24 || formData.address.length >= 256) {
+      newErrorState.address = true;
+      formValid = false;
+    } else {
+      newErrorState.address = false;
+    }
+
+    setErrorState(newErrorState);
+  
+    if(!formValid){
+      setTimeout(() => {
+        formRef.current.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      return;
+    }
+
     setLoading(true);
 
     emailjs
@@ -257,18 +320,21 @@ function Userform({formRef,id}){
   
   return(
     <section ref={formRef} className='w-full 2xl:p-10 xl:p-10 lg:p-10 md:p-10 sm:p-0 esm:p-0 relative'>
-      <form onSubmit={handleSubmit}  className='border border-solid shadow-2xl 2xl:p-10 xl:p-10 lg:p-10 md:p-8 sm:p-6 esm:p-4 my-10 rounded-2xl flex flex-col gap-10 text-black'>
+      <form onSubmit={handleSubmit}   className='border border-solid shadow-2xl 2xl:p-10 xl:p-10 lg:p-10 md:p-8 sm:p-6 esm:p-4 my-10 rounded-2xl flex flex-col gap-10 text-black'>
         <ToastContainer />
         <h1 className='text-center 2xl:text-[3rem] xl:text-[3rem] lg:text-[2.5rem] md:text-[2.5rem] sm:text-[2rem] esm:text-[2rem]'>Enter Your Details</h1>
         <hr className='w-[80%] mx-auto border-[rgba(0,0,0,0.3)]'/>
-        <div className='flex items-center gap-5 flex-wrap mt-5'>
-          <input value={formData.name} onChange={handleChange} name='name' type='text' required className='2xl:w-[30%] xl:w-[30%] lg:w-[30%] md:w-[80%] sm:w-[80%] esm:w-full bg-transparent border border-[rgba(0,0,0,0.6)] rounded-md p-2.5 placeholder:text-gray-450  outline-none' placeholder='Full Name'/>
+        <div className='flex items-center gap-x-5 flex-wrap mt-5'>
+          <input value={formData.name} onChange={handleChange} name='name' type='text' required className={` 2xl:w-[30%] xl:w-[30%] lg:w-[30%] md:w-[80%] sm:w-[80%] esm:w-full bg-transparent border  rounded-md p-2.5   outline-none ${errorState.name ? 'border-red-600  placeholder:text-red-600 text-red-600 ' : 'border-[rgba(0,0,0,0.6)] placeholder:text-gray-450 ' } `} placeholder='Full Name'/>
+          {errorState.name&&<p className='mt-2 text-red-600 text-sm'>*Name should be smaller then 24 characters</p>}
         </div>
-        <div className='flex items-center gap-5 flex-wrap'>
-          <input value={formData.phone} onChange={handleChange} name='phone' type='tel' required className='2xl:w-[30%] xl:w-[30%]  lg:w-[85%] md:w-[85%] sm:w-[85%] esm:w-full bg-transparent border border-[rgba(0,0,0,0.6)] rounded-md p-2.5 placeholder:text-gray-450 outline-none' placeholder='Phone '/>
+        <div className='flex items-center gap-x05 flex-wrap'>
+          <input value={formData.phone} onChange={handleChange} name='phone' type='tel' required className={`2xl:w-[30%] xl:w-[30%]  lg:w-[85%] md:w-[85%] sm:w-[85%] esm:w-full bg-transparent border border-[rgba(0,0,0,0.6)] rounded-md p-2.5 placeholder:text-gray-450 outline-none ${errorState.phone ? 'border-red-600  placeholder:text-red-600  text-red-600 ' : 'border-[rgba(0,0,0,0.6)] placeholder:text-gray-450 ' } `} placeholder='Phone '/>
+          {errorState.phone&&<p className='mt-2 text-red-600 text-sm'>*Enter a valid Phone Number</p>}
         </div>
-        <div className='flex items-center gap-5 flex-wrap'>
-          <input value={formData.email} onChange={handleChange} name='email' type='email' required className='2xl:w-[40%] xl:w-[40%] lg:w-[65%] sm:w-[75%] esm:w-full bg-transparent border border-[rgba(0,0,0,0.6)] rounded-md p-2.5 placeholder:text-gray-450 outline-none' placeholder='Email'/>
+        <div className='flex items-center gap-x-5 flex-wrap'>
+          <input value={formData.email} onChange={handleChange} name='email' type='email' required className={`2xl:w-[40%] xl:w-[40%] lg:w-[65%] sm:w-[75%] esm:w-full bg-transparent border border-[rgba(0,0,0,0.6)] rounded-md p-2.5 placeholder:text-gray-450 outline-none ${errorState.email ? 'border-red-600  placeholder:text-red-600 text-red-600 ' : 'border-[rgba(0,0,0,0.6)] placeholder:text-gray-450 ' }`} placeholder='Email'/>
+          {errorState.email&&<p className='mt-2 text-red-600 text-sm'>*Email should be smaller then 24 characters</p>}
         </div>
         <div className='flex items-center gap-5 flex-wrap'>
           <label className='text-lg text-[rgba(0,0,0,0.7)]'>Province :</label>
@@ -301,7 +367,8 @@ function Userform({formRef,id}){
           </div>
         </div>
         <div className='flex items-center gap-5 flex-wrap'>
-          <textarea  value={formData.address} onChange={handleChange}  name='address'  required   className='2xl:w-[45%] xl:w-[45%] lg:w-[45%] md:w-[80%] sm:w-[80%] esm:w-full h-40 bg-transparent border border-[rgba(0,0,0,0.6)] rounded-md p-2.5 placeholder:text-gray-500 outline-none resize-none'  placeholder='Enter your detailed Address'/>
+          <textarea  value={formData.address} onChange={handleChange}  name='address'  required   className={`2xl:w-[45%] xl:w-[45%] lg:w-[45%] md:w-[80%] sm:w-[80%] esm:w-full h-40 bg-transparent border border-[rgba(0,0,0,0.6)] rounded-md p-2.5 placeholder:text-gray-500 outline-none resize-none ${errorState.address? 'border-red-600  placeholder:text-red-600 text-red-600  ' : 'border-[rgba(0,0,0,0.6)] placeholder:text-gray-450 ' }`}  placeholder='Enter your detailed Address'/>
+          {errorState.address&&<p className='mt-2 text-red-600 text-sm'>*Address should be smaller then 256 Characters</p>}
         </div>
         <button type='button' className='py-5 px-3 2xl:w-[50%] xl:w-[50%] lg:w-[50%] md:w-full sm:w-full esm:w-full border border-black rounded-lg cursor-default outline-none'>
           <div className='flex items-center justify-center gap-x-3 flex-nowrap'>
@@ -332,9 +399,10 @@ function Userform({formRef,id}){
             <h1 className='text-lg font-bold'>Total = </h1>
             <p className='text-[1.2rem] text-gray-600'> {productTotal} + {inputValue*200} = {productTotal+inputValue*200} </p>
           </div>
+          <p className='text-red-600 text-sm mt-5'>After placing Order you will be expecting a order Confirmation Phone Call . Must be Answered In-order to Make your Purchase. </p>
         </div>
         <div className='w-full h-[100px] flex flex-col gap-y-3 items-center justify-center'>
-          <button type='submit' className='p-3 px-5 border border-[rgba(0,0,0,0.6)] rounded-2xl text-[1.5rem] bg-black flex items-center gap-x-2 text-white transition-all duration-300 hover:bg-transparent hover:text-black group'>Place Order<svg width="32px" height="32px" className='transition-all duration-300 fill-white group-hover:fill-black' viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.0303 13.4697C9.73744 13.1768 9.26256 13.1768 8.96967 13.4697C8.67678 13.7626 8.67678 14.2374 8.96967 14.5303L10.0303 13.4697ZM11.5 16L10.9697 16.5303C11.2626 16.8232 11.7374 16.8232 12.0303 16.5303L11.5 16ZM16.0303 12.5303C16.3232 12.2374 16.3232 11.7626 16.0303 11.4697C15.7374 11.1768 15.2626 11.1768 14.9697 11.4697L16.0303 12.5303ZM4.76942 9.13841C4.67576 9.5419 4.92693 9.94492 5.33041 10.0386C5.7339 10.1322 6.13692 9.88107 6.23058 9.47759L4.76942 9.13841ZM6.5 5V4.25C6.15112 4.25 5.84831 4.49057 5.76942 4.83041L6.5 5ZM12.5 5.75C12.9142 5.75 13.25 5.41421 13.25 5C13.25 4.58579 12.9142 4.25 12.5 4.25V5.75ZM6.25 9.308C6.25 8.89379 5.91421 8.558 5.5 8.558C5.08579 8.558 4.75 8.89379 4.75 9.308H6.25ZM5.5 19H4.75C4.75 19.4142 5.08579 19.75 5.5 19.75V19ZM19.5 19V19.75C19.9142 19.75 20.25 19.4142 20.25 19H19.5ZM20.25 9.308C20.25 8.89379 19.9142 8.558 19.5 8.558C19.0858 8.558 18.75 8.89379 18.75 9.308H20.25ZM5.5 8.558C5.08579 8.558 4.75 8.89379 4.75 9.308C4.75 9.72221 5.08579 10.058 5.5 10.058V8.558ZM12.5 10.058C12.9142 10.058 13.25 9.72221 13.25 9.308C13.25 8.89379 12.9142 8.558 12.5 8.558V10.058ZM11.75 9.308C11.75 9.72221 12.0858 10.058 12.5 10.058C12.9142 10.058 13.25 9.72221 13.25 9.308H11.75ZM13.25 5C13.25 4.58579 12.9142 4.25 12.5 4.25C12.0858 4.25 11.75 4.58579 11.75 5H13.25ZM12.5 8.558C12.0858 8.558 11.75 8.89379 11.75 9.308C11.75 9.72221 12.0858 10.058 12.5 10.058V8.558ZM19.5 10.058C19.9142 10.058 20.25 9.72221 20.25 9.308C20.25 8.89379 19.9142 8.558 19.5 8.558V10.058ZM13.25 9.308C13.25 8.89379 12.9142 8.558 12.5 8.558C12.0858 8.558 11.75 8.89379 11.75 9.308H13.25ZM11.75 11C11.75 11.4142 12.0858 11.75 12.5 11.75C12.9142 11.75 13.25 11.4142 13.25 11H11.75ZM12.5 4.25C12.0858 4.25 11.75 4.58579 11.75 5C11.75 5.41421 12.0858 5.75 12.5 5.75V4.25ZM18.5 5L19.2306 4.83041C19.1517 4.49057 18.8489 4.25 18.5 4.25V5ZM18.7694 9.47759C18.8631 9.88107 19.2661 10.1322 19.6696 10.0386C20.0731 9.94492 20.3242 9.5419 20.2306 9.13841L18.7694 9.47759ZM8.96967 14.5303L10.9697 16.5303L12.0303 15.4697L10.0303 13.4697L8.96967 14.5303ZM12.0303 16.5303L16.0303 12.5303L14.9697 11.4697L10.9697 15.4697L12.0303 16.5303ZM6.23058 9.47759L7.23058 5.16959L5.76942 4.83041L4.76942 9.13841L6.23058 9.47759ZM6.5 5.75H12.5V4.25H6.5V5.75ZM4.75 9.308V19H6.25V9.308H4.75ZM5.5 19.75H19.5V18.25H5.5V19.75ZM20.25 19V9.308H18.75V19H20.25ZM5.5 10.058H12.5V8.558H5.5V10.058ZM13.25 9.308V5H11.75V9.308H13.25ZM12.5 10.058H19.5V8.558H12.5V10.058ZM11.75 9.308V11H13.25V9.308H11.75ZM12.5 5.75H18.5V4.25H12.5V5.75ZM17.7694 5.16959L18.7694 9.47759L20.2306 9.13841L19.2306 4.83041L17.7694 5.16959Z"/></svg></button>
+          <button onClick={handleSubmit} type='submit' className='p-3 px-5 border border-[rgba(0,0,0,0.6)] rounded-2xl text-[1.5rem] bg-black flex items-center gap-x-2 text-white transition-all duration-300 hover:bg-transparent hover:text-black group'>Place Order<svg width="32px" height="32px" className='transition-all duration-300 fill-white group-hover:fill-black' viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.0303 13.4697C9.73744 13.1768 9.26256 13.1768 8.96967 13.4697C8.67678 13.7626 8.67678 14.2374 8.96967 14.5303L10.0303 13.4697ZM11.5 16L10.9697 16.5303C11.2626 16.8232 11.7374 16.8232 12.0303 16.5303L11.5 16ZM16.0303 12.5303C16.3232 12.2374 16.3232 11.7626 16.0303 11.4697C15.7374 11.1768 15.2626 11.1768 14.9697 11.4697L16.0303 12.5303ZM4.76942 9.13841C4.67576 9.5419 4.92693 9.94492 5.33041 10.0386C5.7339 10.1322 6.13692 9.88107 6.23058 9.47759L4.76942 9.13841ZM6.5 5V4.25C6.15112 4.25 5.84831 4.49057 5.76942 4.83041L6.5 5ZM12.5 5.75C12.9142 5.75 13.25 5.41421 13.25 5C13.25 4.58579 12.9142 4.25 12.5 4.25V5.75ZM6.25 9.308C6.25 8.89379 5.91421 8.558 5.5 8.558C5.08579 8.558 4.75 8.89379 4.75 9.308H6.25ZM5.5 19H4.75C4.75 19.4142 5.08579 19.75 5.5 19.75V19ZM19.5 19V19.75C19.9142 19.75 20.25 19.4142 20.25 19H19.5ZM20.25 9.308C20.25 8.89379 19.9142 8.558 19.5 8.558C19.0858 8.558 18.75 8.89379 18.75 9.308H20.25ZM5.5 8.558C5.08579 8.558 4.75 8.89379 4.75 9.308C4.75 9.72221 5.08579 10.058 5.5 10.058V8.558ZM12.5 10.058C12.9142 10.058 13.25 9.72221 13.25 9.308C13.25 8.89379 12.9142 8.558 12.5 8.558V10.058ZM11.75 9.308C11.75 9.72221 12.0858 10.058 12.5 10.058C12.9142 10.058 13.25 9.72221 13.25 9.308H11.75ZM13.25 5C13.25 4.58579 12.9142 4.25 12.5 4.25C12.0858 4.25 11.75 4.58579 11.75 5H13.25ZM12.5 8.558C12.0858 8.558 11.75 8.89379 11.75 9.308C11.75 9.72221 12.0858 10.058 12.5 10.058V8.558ZM19.5 10.058C19.9142 10.058 20.25 9.72221 20.25 9.308C20.25 8.89379 19.9142 8.558 19.5 8.558V10.058ZM13.25 9.308C13.25 8.89379 12.9142 8.558 12.5 8.558C12.0858 8.558 11.75 8.89379 11.75 9.308H13.25ZM11.75 11C11.75 11.4142 12.0858 11.75 12.5 11.75C12.9142 11.75 13.25 11.4142 13.25 11H11.75ZM12.5 4.25C12.0858 4.25 11.75 4.58579 11.75 5C11.75 5.41421 12.0858 5.75 12.5 5.75V4.25ZM18.5 5L19.2306 4.83041C19.1517 4.49057 18.8489 4.25 18.5 4.25V5ZM18.7694 9.47759C18.8631 9.88107 19.2661 10.1322 19.6696 10.0386C20.0731 9.94492 20.3242 9.5419 20.2306 9.13841L18.7694 9.47759ZM8.96967 14.5303L10.9697 16.5303L12.0303 15.4697L10.0303 13.4697L8.96967 14.5303ZM12.0303 16.5303L16.0303 12.5303L14.9697 11.4697L10.9697 15.4697L12.0303 16.5303ZM6.23058 9.47759L7.23058 5.16959L5.76942 4.83041L4.76942 9.13841L6.23058 9.47759ZM6.5 5.75H12.5V4.25H6.5V5.75ZM4.75 9.308V19H6.25V9.308H4.75ZM5.5 19.75H19.5V18.25H5.5V19.75ZM20.25 19V9.308H18.75V19H20.25ZM5.5 10.058H12.5V8.558H5.5V10.058ZM13.25 9.308V5H11.75V9.308H13.25ZM12.5 10.058H19.5V8.558H12.5V10.058ZM11.75 9.308V11H13.25V9.308H11.75ZM12.5 5.75H18.5V4.25H12.5V5.75ZM17.7694 5.16959L18.7694 9.47759L20.2306 9.13841L19.2306 4.83041L17.7694 5.16959Z"/></svg></button>
         </div>
       </form>
       {loading&&
