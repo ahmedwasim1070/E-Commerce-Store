@@ -373,10 +373,10 @@ function Userform({formRef,id}){
         <button type='button' className='py-5 px-3 2xl:w-[50%] xl:w-[50%] lg:w-[50%] md:w-full sm:w-full esm:w-full border border-black rounded-lg cursor-default outline-none'>
           <div className='flex items-center justify-center gap-x-3 flex-nowrap'>
             <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.48334 5.25942C6.33891 5.38732 5.42286 6.29057 5.29045 7.42268C4.93476 10.4638 4.93476 13.5361 5.29045 16.5772C5.42286 17.7093 6.33891 18.6126 7.48334 18.7405C10.4602 19.0732 13.5398 19.0732 16.5166 18.7405C17.6611 18.6126 18.5771 17.7093 18.7095 16.5772C18.9651 14.3921 19.037 12.1909 18.9253 9.99668C18.9224 9.94002 18.9436 9.88475 18.9837 9.84463L20.0225 8.80585C20.1427 8.68562 20.3482 8.7608 20.3609 8.93036C20.557 11.5353 20.5031 14.1543 20.1994 16.7515C19.9845 18.5884 18.5096 20.0271 16.6832 20.2312C13.5957 20.5763 10.4043 20.5763 7.31673 20.2312C5.49035 20.0271 4.01545 18.5884 3.8006 16.7515C3.43137 13.5945 3.43137 10.4053 3.8006 7.24843C4.01545 5.41146 5.49035 3.97282 7.31673 3.7687C10.4043 3.42362 13.5957 3.42362 16.6832 3.7687C17.3265 3.84059 17.9261 4.06562 18.4425 4.40725C18.5441 4.47448 18.5542 4.61732 18.468 4.70346L17.6652 5.50635C17.5995 5.57202 17.4976 5.58307 17.4158 5.5392C17.1423 5.39271 16.8385 5.29539 16.5166 5.25942C13.5398 4.92671 10.4602 4.92671 7.48334 5.25942Z" fill="#000000"/><path d="M21.0303 6.03028C21.3232 5.73738 21.3232 5.26251 21.0303 4.96962C20.7374 4.67672 20.2625 4.67672 19.9696 4.96962L11.5 13.4393L9.0303 10.9696C8.73741 10.6767 8.26253 10.6767 7.96964 10.9696C7.67675 11.2625 7.67675 11.7374 7.96964 12.0303L10.9696 15.0303C11.2625 15.3232 11.7374 15.3232 12.0303 15.0303L21.0303 6.03028Z" fill="#000000"/></svg>
-            <p className='font-bold text-nowrap'>Shipping Standard</p>
+            <p className='font-bold text-nowrap'>Free Shipping</p>
             <svg  viewBox="0 0 24 24"  fill="#00000"   height="24px" width="24px"  > <path d="M3 7c-1.11 0-2 .89-2 2v8h2a3 3 0 003 3 3 3 0 003-3h6a3 3 0 003 3 3 3 0 003-3h2v-4c0-1.11-.89-2-2-2l-3-4H3m12 1.5h2.5l1.96 2.5H15V8.5m-9 7A1.5 1.5 0 017.5 17 1.5 1.5 0 016 18.5 1.5 1.5 0 014.5 17 1.5 1.5 0 016 15.5m12 0a1.5 1.5 0 011.5 1.5 1.5 1.5 0 01-1.5 1.5 1.5 1.5 0 01-1.5-1.5 1.5 1.5 0 011.5-1.5z" /></svg>
           </div>
-          <p className='pt-1 text-sm text-gray-700'>Shipping Fee 200 PKR</p>
+          <p className='pt-1 text-sm text-gray-700'>Free Home deleviery</p>
         </button>
         <div className=''>
           <h1 className='text-xl font-bold mb-2'>Order Sumary :</h1>
@@ -397,7 +397,7 @@ function Userform({formRef,id}){
           </div>
           <div className='flex gap-x-2 items-center'>
             <h1 className='text-lg font-bold'>Total = </h1>
-            <p className='text-[1.2rem] text-gray-600'> {productTotal} + {inputValue*200} = {productTotal+inputValue*200} </p>
+            <p className='text-[1.2rem] text-gray-600'> {productTotal} + No Deleviery Charges = {productTotal}  {/*{inputValue*200}*/}  </p>
           </div>
           <p className='text-red-600 text-sm mt-5'>After placing Order you will be expecting a order Confirmation Phone Call . Must be Answered In-order to Make your Purchase. </p>
         </div>
