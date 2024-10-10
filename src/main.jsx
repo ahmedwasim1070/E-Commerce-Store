@@ -59,11 +59,8 @@ function App() {
 
   const removeCart = (i) => {
     setCartData(cartData.filter((_, index) => index !== i));
-    toast.error(<>
-      <p>{productData[i].productName} is already in the Cart.{' '}</p>
-      <Link className='cursor-pointer underline ' to='/cart'>
-        View Cart &gt; &gt;
-      </Link>
+    toast.info(<>
+      <p>{productData[i].productName} removed from the Cart.{' '}</p>
     </>,{
       autoClose: 2000,
       hideProgressBar: true,
