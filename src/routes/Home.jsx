@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 import '../index.css';
 import Header from '../components/Header';
 import Product from '../components/Product';
@@ -123,7 +122,6 @@ function Hero({idxPr,setIdxPr,addToCart}){
 
   return(
     <Link to={`/product/${idxPr}`}>
-      <ToastContainer />
       <section  className={`w-full 2xl:h-[850px] xl:h-[800px] lg:h-[750px] md:h-[700px] sm:h-[850px] flex justify-evenly md:relative sm:relative esm:relative esm:h-[900px] ${fade} text-white ${productData[idxPr].productBg}`}>
         <div className='h-[55%] flex flex-col justify-end 2xl:relative 2xl:left-0 2xl:top-0 2xl:w-[33%] xl:relative xl:left-0 xl:top-0 xl:w-[33%] lg:relative lg:top-0 lg:left-0 lg:w-[33%] md:absolute md:left-[42%] md:top-[-5%] md:w-full sm:absolute sm:left-[46%] sm:top-[-5%] sm:w-full esm:absolute esm:top-[110px] esm:left-[10%] '>
           <h1 className={`2xl:text-[4rem] xl:text-[3.2rem] lg:text-[2.5rem] md:text-[2.5rem] sm:text-[2.5rem] esm:text-[3rem] ${fade}`} >{productData[idxPr].productName}</h1>

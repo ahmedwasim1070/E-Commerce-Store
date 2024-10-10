@@ -44,7 +44,7 @@ function Product({addToCart}) {
         <section
           ref={(el) => (productRefs.current[i] = el)} 
           data-index={i} 
-          className={`flex flex-col justify-center gap-y-5 hover:scale-105 hover:shadow-[rgba(0,0,0,0.6)] hover:shadow-2xl cursor-pointer product-font opacity-0 transition-opacity duration-700 ease-in-out`}
+          className={`flex flex-col justify-center gap-y-5 hover:scale-105  hover:shadow-[rgba(0,0,0,0.6)] hover:shadow-2xl cursor-pointer product-font opacity-0 transition-opacity duration-700 ease-in-out`}
         >
           <div className='p-4'>
             <img
@@ -56,8 +56,8 @@ function Product({addToCart}) {
           <div className='w-full pl-2'>
             <h1 className='text-xl'>{c.productName}</h1>
             <div className='flex items-center w-full my-1 gap-2 flex-wrap'>
-              <span className='p-1.5 text-lg bg-red-500 text-white'>20% OFF</span>
-              <h1 className='text-xl text-red-600 font-bold'>
+              <span className='p-1.5 text-lg bg-red-600 text-white'>20% OFF</span>
+              <h1 className='text-xl text-black font-bold'>
                 PKR {c.productPrice - c.productSale}
               </h1>
               <h1 className='text-xl line-through text-[rgba(0,0,0,0.4)] font-bold'>

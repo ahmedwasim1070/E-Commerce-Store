@@ -1,7 +1,7 @@
 import React, { useEffect,  useRef,useState } from 'react';
 import { Link } from 'react-router-dom';
+import {ToastContainer} from 'react-toastify';
 import Header from '../components/Header';
-import { ToastContainer } from 'react-toastify';  
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -19,7 +19,7 @@ function Cart({cartData,removeCart}) {
   }
   return (
     <main className=' w-full h-[100vh] overflow-x-hidden'>
-      <ToastContainer />
+        <ToastContainer />
       <div className='w-full mx-auto fl:container'>
         <Header cartData={cartData} smNav={smNav}/>
         {cartData.length==0?

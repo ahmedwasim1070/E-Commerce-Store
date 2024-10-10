@@ -1,7 +1,7 @@
 import { StrictMode, useState, useEffect } from 'react'; 
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { toast} from 'react-toastify';
+import { BrowserRouter, Route, Routes,Link } from 'react-router-dom';
+import { toast,ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './index.css';
 
@@ -33,19 +33,47 @@ function App() {
     const isRepeat = cartData.some(item => item.productId === itemToAdd.productId);
     if (!isRepeat) {
       setCartData([...cartData, itemToAdd]);
-      toast.info("Item Carted Successfully")
+      toast.info(<>
+        <p>{productData[i].productName} added to the Cart.{' '}</p>
+        <Link className='cursor-pointer underline ' to='/cart'>
+          View Cart &gt; &gt;
+        </Link>
+      </>,{
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+      })
     }else{
-      toast.error("Item Already in the list")
+      toast.error(<>
+        <p>{productData[i].productName} is already in the Cart.{' '}</p>
+        <Link className='cursor-pointer underline ' to='/cart'>
+          View Cart &gt; &gt;
+        </Link>
+      </>,{
+        autoClose: 2000,
+        hideProgressBar: true,
+        pauseOnHover: false,
+      })
     }
   };
 
   const removeCart = (i) => {
     setCartData(cartData.filter((_, index) => index !== i));
-    toast.info('Item Removed Successfully ')
+    toast.error(<>
+      <p>{productData[i].productName} is already in the Cart.{' '}</p>
+      <Link className='cursor-pointer underline ' to='/cart'>
+        View Cart &gt; &gt;
+      </Link>
+    </>,{
+      autoClose: 2000,
+      hideProgressBar: true,
+      pauseOnHover: false,
+    })
   };
 
   return (
     <Routes>
+      
       <Route 
         path='/' 
         element={<Home idxPr={idxPr} setIdxPr={setIdxPr} cartData={cartData} addToCart={addToCart} />} 
@@ -63,6 +91,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <App />
+        <ToastContainer />
     </BrowserRouter>    
   </StrictMode>
 );
