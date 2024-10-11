@@ -71,7 +71,8 @@ function Productrender({id,viewForm,statusColor}){
 
   let [desDrop,setDesDrop]=useState(false)
   let [noteDrop,setNoteDrop]=useState(false)
-  let [revDropdown,setRevDropdown]=useState(false)
+  let [revDropdown,setRevDropdown]=useState(true)
+  let [revForm,setRevForm]=useState(false)
 
   return(
 
@@ -144,23 +145,53 @@ function Productrender({id,viewForm,statusColor}){
               </div>
             </div>
             <hr className='2xl:w-[70%] xl:w-[70%] lg:w-[70%] md:w-[85%] sm:w-[85%] esm:w-[85%] mx-auto border-[rgba(0,0,0,0.3)]'/>
-            <div onClick={()=>{setRevDropdown(!revDropdown)}} className={`w-[80%] my-2 text-lg mx-auto px-20 overflow-hidden cursor-pointer  ${revDropdown? 'max-h-[2000px]' : 'h-8' }  2xl:px-20 xl:px-20 lg:px-14 md:px-2 sm:px-1 esm:px-0`}>
-              <h1 className='w-full px-2 flex gap-4 items-center justify-between font-bold'>Reviews (0) {noteDrop? <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M12 7C12.2652 7 12.5196 7.10536 12.7071 7.29289L19.7071 14.2929C20.0976 14.6834 20.0976 15.3166 19.7071 15.7071C19.3166 16.0976 18.6834 16.0976 18.2929 15.7071L12 9.41421L5.70711 15.7071C5.31658 16.0976 4.68342 16.0976 4.29289 15.7071C3.90237 15.3166 3.90237 14.6834 4.29289 14.2929L11.2929 7.29289C11.4804 7.10536 11.7348 7 12 7Z" fill="#000000"/></svg>   : <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M4.29289 8.29289C4.68342 7.90237 5.31658 7.90237 5.70711 8.29289L12 14.5858L18.2929 8.29289C18.6834 7.90237 19.3166 7.90237 19.7071 8.29289C20.0976 8.68342 20.0976 9.31658 19.7071 9.70711L12.7071 16.7071C12.3166 17.0976 11.6834 17.0976 11.2929 16.7071L4.29289 9.70711C3.90237 9.31658 3.90237 8.68342 4.29289 8.29289Z" fill="#000000"/></svg>} </h1>
+            <div  className={`w-[80%] my-2 text-lg mx-auto px-20 overflow-hidden cursor-pointer  ${revDropdown? 'max-h-[2000px]' : 'h-8' }  2xl:px-20 xl:px-20 lg:px-14 md:px-2 sm:px-1 esm:px-0`}>
+              <h1 onClick={()=>{setRevDropdown(!revDropdown)}} className='w-full px-2 flex gap-4 items-center justify-between font-bold'>Reviews (0) {revDropdown? <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M12 7C12.2652 7 12.5196 7.10536 12.7071 7.29289L19.7071 14.2929C20.0976 14.6834 20.0976 15.3166 19.7071 15.7071C19.3166 16.0976 18.6834 16.0976 18.2929 15.7071L12 9.41421L5.70711 15.7071C5.31658 16.0976 4.68342 16.0976 4.29289 15.7071C3.90237 15.3166 3.90237 14.6834 4.29289 14.2929L11.2929 7.29289C11.4804 7.10536 11.7348 7 12 7Z" fill="#000000"/></svg>   : <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" clipRule="evenodd" d="M4.29289 8.29289C4.68342 7.90237 5.31658 7.90237 5.70711 8.29289L12 14.5858L18.2929 8.29289C18.6834 7.90237 19.3166 7.90237 19.7071 8.29289C20.0976 8.68342 20.0976 9.31658 19.7071 9.70711L12.7071 16.7071C12.3166 17.0976 11.6834 17.0976 11.2929 16.7071L4.29289 9.70711C3.90237 9.31658 3.90237 8.68342 4.29289 8.29289Z" fill="#000000"/></svg>} </h1>
               <div className='w-full flex justify-end my-5'>
-                <button className='bg-black p-3 text-white transition-all duration-300 rounded-md outline-none border border-[rgba(0,0,0,0.6)] hover:text-black hover:bg-white'>Write a Review</button>
+                <button onClick={
+                  ()=>setRevForm(true)
+                } className='bg-black p-3 text-white transition-all duration-300 rounded-md outline-none border border-[rgba(0,0,0,0.6)] hover:text-black hover:bg-white'>Write a Review</button>
               </div>
-              <div className='w-full  p-5 flex items-center justify-center mb-20 '>
-                <div className='w-[50%] p-10 flex flex-col gap-y-5 border border-solid shadow-2xl  rounded-xl '>
-                  <div className='flex items-center gap-2 flex-wrap'>
-                    <label>Email : </label>
-                    <input name='email' type='email' required className=' w-full bg-transparent border border-[rgba(0,0,0,0.6)] rounded-md p-2.5 placeholder:text-gray-450 outline-none' placeholder='Email'/>
-                  </div>
-                  <div className='flex items-center gap-1 flex-wrap'>
-                    <label>Review : </label>
-                    <textarea    name='review'  required   className='w-full h-24 bg-transparent border border-[rgba(0,0,0,0.6)] rounded-md p-2.5 placeholder:text-gray-500 outline-none resize-none'  placeholder='Enter your detailed Address'/>
-                  </div>
-                </div>
-              </div>
+              {
+                revForm&&
+                <section  className='w-full my-10 flex items-center justify-center'>
+                  <form className='2xl:w-[50%] xl:w-[55%] lg:w-[60%] sm:w-[75%] esm:w-full p-5 rounded-xl flex gap-y-5 flex-col border border-solid shadow-2xl'>
+                    <div className='w-full'>
+                      <label className='w-full'>Name : </label>
+                      <input  name='name' type='text' required className={`w-full bg-transparent border  rounded-md p-2.5   outline-none border-[rgba(0,0,0,0.6)] placeholder:text-gray-450 `} placeholder='Full Name'/>
+                    </div>
+                    <div className='w-full'>
+                      <label className='w-full'>Email : </label>
+                      <input  name='email' type='text' required className={`w-full bg-transparent border  rounded-md p-2.5   outline-none border-[rgba(0,0,0,0.6)] placeholder:text-gray-450 `} placeholder='Email'/>
+                    </div>
+                    <div className='w-full'>
+                      <label>Review : </label>
+                      <div class="rate">
+                       <input type="radio" id="star5" name="rate" value="5" />
+                       <label for="star5" title="5 star">5 stars</label>
+                       <input type="radio" id="star4" name="rate" value="4" />
+                       <label for="star4" title="4 star">4 stars</label>
+                       <input type="radio" id="star3" name="rate" value="3" />
+                       <label for="star3" title="3 star">3 stars</label>
+                       <input type="radio" id="star2" name="rate" value="2" />
+                       <label for="star2" title="2 star">2 stars</label>
+                       <input type="radio" id="star1" name="rate" value="1" />
+                       <label for="star1" title="1 star">1 star</label>
+                      </div>
+                      <div className='w-full flex justify-center items-center gap-x-4'>
+                        <p>😔</p>
+                        <hr className='w-[20%] border border-[rgba(0,0,0,0.2)]'/>
+                        <p>😊</p>
+                      </div>
+                    </div>
+                    <div className='w-full'>
+                      <label className='w-full'>Message : </label>
+                      <textarea name='review '  required   className={`w-full h-40 bg-transparent border border-[rgba(0,0,0,0.6)] rounded-md p-2.5 placeholder:text-gray-500 outline-none resize-none placeholder:text-gray-450`}  placeholder='Message'/>
+                    </div>
+                  </form>
+              </section>
+              }
+
               <div className='w-full'>
                 <p className='text-center'>No reviews yet.</p>
               </div>
@@ -267,7 +298,7 @@ function Userform({formRef,id}){
       newErrorState.phone = false;
     }
   
-    if (formData.email.length >= 48) {
+    if (formData.name.length <=6 ||formData.email.length >= 48) {
       newErrorState.email = true;
       formValid = false;
     } else {
@@ -326,15 +357,15 @@ function Userform({formRef,id}){
         <hr className='w-[80%] mx-auto border-[rgba(0,0,0,0.3)]'/>
         <div className='flex items-center gap-x-5 flex-wrap mt-5'>
           <input value={formData.name} onChange={handleChange} name='name' type='text' required className={` 2xl:w-[30%] xl:w-[30%] lg:w-[30%] md:w-[80%] sm:w-[80%] esm:w-full bg-transparent border  rounded-md p-2.5   outline-none ${errorState.name ? 'border-red-600  placeholder:text-red-600 text-red-600 ' : 'border-[rgba(0,0,0,0.6)] placeholder:text-gray-450 ' } `} placeholder='Full Name'/>
-          {errorState.name&&<p className='mt-2 text-red-600 text-sm'>*Name should be smaller then 24 characters</p>}
+          {errorState.name&&<p className='w-full mt-2 text-red-600 text-sm'>Enter a valid Name (Must be smaller then 24 characters)</p>}
         </div>
-        <div className='flex items-center gap-x05 flex-wrap'>
+        <div className='flex items-center gap-x-5 flex-wrap'>
           <input value={formData.phone} onChange={handleChange} name='phone' type='tel' required className={`2xl:w-[30%] xl:w-[30%]  lg:w-[85%] md:w-[85%] sm:w-[85%] esm:w-full bg-transparent border border-[rgba(0,0,0,0.6)] rounded-md p-2.5 placeholder:text-gray-450 outline-none ${errorState.phone ? 'border-red-600  placeholder:text-red-600  text-red-600 ' : 'border-[rgba(0,0,0,0.6)] placeholder:text-gray-450 ' } `} placeholder='Phone '/>
-          {errorState.phone&&<p className='mt-2 text-red-600 text-sm'>*Enter a valid Phone Number</p>}
+          {errorState.phone&&<p className=' w-full mt-2 text-red-600 text-sm'>Enter a valid Phone Number (Number Should be 11 digits)</p>}
         </div>
         <div className='flex items-center gap-x-5 flex-wrap'>
           <input value={formData.email} onChange={handleChange} name='email' type='email' required className={`2xl:w-[40%] xl:w-[40%] lg:w-[65%] sm:w-[75%] esm:w-full bg-transparent border border-[rgba(0,0,0,0.6)] rounded-md p-2.5 placeholder:text-gray-450 outline-none ${errorState.email ? 'border-red-600  placeholder:text-red-600 text-red-600 ' : 'border-[rgba(0,0,0,0.6)] placeholder:text-gray-450 ' }`} placeholder='Email'/>
-          {errorState.email&&<p className='mt-2 text-red-600 text-sm'>*Email should be smaller then 24 characters</p>}
+          {errorState.email&&<p className='w-full mt-2 text-red-600 text-sm'>Enter a valid Email (Email should be smaller then 48 characters)</p>}
         </div>
         <div className='flex items-center gap-5 flex-wrap'>
           <label className='text-lg text-[rgba(0,0,0,0.7)]'>Province :</label>
@@ -366,9 +397,9 @@ function Userform({formRef,id}){
             <button name='pos' onClick={setVal} type='button' className='px-3 rounded-sm bg-black text-white text-lg '>+</button>
           </div>
         </div>
-        <div className='flex items-center gap-5 flex-wrap'>
+        <div className='flex items-center gap-x-5 flex-wrap'>
           <textarea  value={formData.address} onChange={handleChange}  name='address'  required   className={`2xl:w-[45%] xl:w-[45%] lg:w-[45%] md:w-[80%] sm:w-[80%] esm:w-full h-40 bg-transparent border border-[rgba(0,0,0,0.6)] rounded-md p-2.5 placeholder:text-gray-500 outline-none resize-none ${errorState.address? 'border-red-600  placeholder:text-red-600 text-red-600  ' : 'border-[rgba(0,0,0,0.6)] placeholder:text-gray-450 ' }`}  placeholder='Enter your detailed Address'/>
-          {errorState.address&&<p className='mt-2 text-red-600 text-sm'>*Address should be smaller then 256 Characters</p>}
+          {errorState.address&&<p className=' w-full mt-2 text-red-600 text-sm'>Enter a valid Address (Should be greater then 24 and smaller then 256 Characters) </p>}
         </div>
         <button type='button' className='py-5 px-3 2xl:w-[50%] xl:w-[50%] lg:w-[50%] md:w-full sm:w-full esm:w-full border border-black rounded-lg cursor-default outline-none'>
           <div className='flex items-center justify-center gap-x-3 flex-nowrap'>
@@ -397,9 +428,9 @@ function Userform({formRef,id}){
           </div>
           <div className='flex gap-x-2 items-center'>
             <h1 className='text-lg font-bold'>Total = </h1>
-            <p className='text-[1.2rem] text-gray-600'> {productTotal} + No Deleviery Charges = {productTotal}  {/*{inputValue*200}*/}  </p>
+            <p className='text-[1.2rem] text-gray-600 flex gap-x-2'> {productTotal} + <p className='line-through'>200 </p>  = {productTotal}  {/*{inputValue*200}*/}  </p>
           </div>
-          <p className='text-red-600 text-sm mt-5'>After placing Order you will be expecting a order Confirmation Phone Call . Must be Answered In-order to Make your Purchase. </p>
+          <p className='text-red-600 text-sm mt-5'>After placing Order you will be expecting a Confirmation Phone Call . Must be Answered In-order to Make your Purchase. </p>
         </div>
         <div className='w-full h-[100px] flex flex-col gap-y-3 items-center justify-center'>
           <button onClick={handleSubmit} type='submit' className='p-3 px-5 border border-[rgba(0,0,0,0.6)] rounded-2xl text-[1.5rem] bg-black flex items-center gap-x-2 text-white transition-all duration-300 hover:bg-transparent hover:text-black group'>Place Order<svg width="32px" height="32px" className='transition-all duration-300 fill-white group-hover:fill-black' viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.0303 13.4697C9.73744 13.1768 9.26256 13.1768 8.96967 13.4697C8.67678 13.7626 8.67678 14.2374 8.96967 14.5303L10.0303 13.4697ZM11.5 16L10.9697 16.5303C11.2626 16.8232 11.7374 16.8232 12.0303 16.5303L11.5 16ZM16.0303 12.5303C16.3232 12.2374 16.3232 11.7626 16.0303 11.4697C15.7374 11.1768 15.2626 11.1768 14.9697 11.4697L16.0303 12.5303ZM4.76942 9.13841C4.67576 9.5419 4.92693 9.94492 5.33041 10.0386C5.7339 10.1322 6.13692 9.88107 6.23058 9.47759L4.76942 9.13841ZM6.5 5V4.25C6.15112 4.25 5.84831 4.49057 5.76942 4.83041L6.5 5ZM12.5 5.75C12.9142 5.75 13.25 5.41421 13.25 5C13.25 4.58579 12.9142 4.25 12.5 4.25V5.75ZM6.25 9.308C6.25 8.89379 5.91421 8.558 5.5 8.558C5.08579 8.558 4.75 8.89379 4.75 9.308H6.25ZM5.5 19H4.75C4.75 19.4142 5.08579 19.75 5.5 19.75V19ZM19.5 19V19.75C19.9142 19.75 20.25 19.4142 20.25 19H19.5ZM20.25 9.308C20.25 8.89379 19.9142 8.558 19.5 8.558C19.0858 8.558 18.75 8.89379 18.75 9.308H20.25ZM5.5 8.558C5.08579 8.558 4.75 8.89379 4.75 9.308C4.75 9.72221 5.08579 10.058 5.5 10.058V8.558ZM12.5 10.058C12.9142 10.058 13.25 9.72221 13.25 9.308C13.25 8.89379 12.9142 8.558 12.5 8.558V10.058ZM11.75 9.308C11.75 9.72221 12.0858 10.058 12.5 10.058C12.9142 10.058 13.25 9.72221 13.25 9.308H11.75ZM13.25 5C13.25 4.58579 12.9142 4.25 12.5 4.25C12.0858 4.25 11.75 4.58579 11.75 5H13.25ZM12.5 8.558C12.0858 8.558 11.75 8.89379 11.75 9.308C11.75 9.72221 12.0858 10.058 12.5 10.058V8.558ZM19.5 10.058C19.9142 10.058 20.25 9.72221 20.25 9.308C20.25 8.89379 19.9142 8.558 19.5 8.558V10.058ZM13.25 9.308C13.25 8.89379 12.9142 8.558 12.5 8.558C12.0858 8.558 11.75 8.89379 11.75 9.308H13.25ZM11.75 11C11.75 11.4142 12.0858 11.75 12.5 11.75C12.9142 11.75 13.25 11.4142 13.25 11H11.75ZM12.5 4.25C12.0858 4.25 11.75 4.58579 11.75 5C11.75 5.41421 12.0858 5.75 12.5 5.75V4.25ZM18.5 5L19.2306 4.83041C19.1517 4.49057 18.8489 4.25 18.5 4.25V5ZM18.7694 9.47759C18.8631 9.88107 19.2661 10.1322 19.6696 10.0386C20.0731 9.94492 20.3242 9.5419 20.2306 9.13841L18.7694 9.47759ZM8.96967 14.5303L10.9697 16.5303L12.0303 15.4697L10.0303 13.4697L8.96967 14.5303ZM12.0303 16.5303L16.0303 12.5303L14.9697 11.4697L10.9697 15.4697L12.0303 16.5303ZM6.23058 9.47759L7.23058 5.16959L5.76942 4.83041L4.76942 9.13841L6.23058 9.47759ZM6.5 5.75H12.5V4.25H6.5V5.75ZM4.75 9.308V19H6.25V9.308H4.75ZM5.5 19.75H19.5V18.25H5.5V19.75ZM20.25 19V9.308H18.75V19H20.25ZM5.5 10.058H12.5V8.558H5.5V10.058ZM13.25 9.308V5H11.75V9.308H13.25ZM12.5 10.058H19.5V8.558H12.5V10.058ZM11.75 9.308V11H13.25V9.308H11.75ZM12.5 5.75H18.5V4.25H12.5V5.75ZM17.7694 5.16959L18.7694 9.47759L20.2306 9.13841L19.2306 4.83041L17.7694 5.16959Z"/></svg></button>
