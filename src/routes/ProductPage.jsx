@@ -25,16 +25,17 @@ function ProductPage({cartData}) {
     event.stopPropagation(); 
   }
 
-    const viewForm=()=>{
-      if(productData[id].productStatus==='In-Stock'){
-        setIsForm(true);
-        setTimeout(() => {
-          formRef.current.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }else{
-        setStatusColor(true)
-      }
+  const viewForm=()=>{
+    if(productData[id].productStatus==='In-Stock'){
+      setIsForm(true);
+      setTimeout(() => {
+        formRef.current.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }else{
+           setStatusColor(true)
     }
+    }
+
 
   return (
     <main className='bg-img w-full h-[100vh] overflow-x-hidden'>
@@ -73,6 +74,11 @@ function Productrender({id,viewForm,statusColor}){
   let [noteDrop,setNoteDrop]=useState(false)
   let [revDropdown,setRevDropdown]=useState(true)
   let [revForm,setRevForm]=useState(false)
+  let [revError,setRevError]=useState(false)
+
+  const reviewSubmit=(e)=>{
+    e.preventDefault()
+  }
 
   return(
 
@@ -155,12 +161,13 @@ function Productrender({id,viewForm,statusColor}){
               {
                 revForm&&
                 <section  className='w-full my-10 flex items-center justify-center'>
-                  <form className='2xl:w-[50%] xl:w-[55%] lg:w-[60%] sm:w-[75%] esm:w-full p-5 rounded-xl flex gap-y-5 flex-col border border-solid shadow-2xl'>
-                    <div className='w-full'>
+                  <form onSubmit={reviewSubmit} className='2xl:w-[50%] xl:w-[55%] lg:w-[60%] sm:w-[75%] esm:w-full p-5 rounded-xl flex gap-y-5 flex-col border border-solid shadow-2xl'>
+                    <h1 className='text-center text-2xl my-4 font-bold'>Write a Review</h1>
+                    <div className='w-full flex flex-col gap-y-2'>
                       <label className='w-full'>Name : </label>
                       <input  name='name' type='text' required className={`w-full bg-transparent border  rounded-md p-2.5   outline-none border-[rgba(0,0,0,0.6)] placeholder:text-gray-450 `} placeholder='Full Name'/>
                     </div>
-                    <div className='w-full'>
+                    <div className='w-full flex flex-col gap-y-2'>
                       <label className='w-full'>Email : </label>
                       <input  name='email' type='text' required className={`w-full bg-transparent border  rounded-md p-2.5   outline-none border-[rgba(0,0,0,0.6)] placeholder:text-gray-450 `} placeholder='Email'/>
                     </div>
@@ -179,15 +186,23 @@ function Productrender({id,viewForm,statusColor}){
                        <label for="star1" title="1 star">1 star</label>
                       </div>
                       <div className='w-full flex justify-center items-center gap-x-4'>
-                        <p>😔</p>
+                        <span className='flex flex-col items-center'><p>😔</p><p className=' text-sm' >Bad</p></span>
                         <hr className='w-[20%] border border-[rgba(0,0,0,0.2)]'/>
-                        <p>😊</p>
+                        <span className='flex flex-col items-center'><p>😊</p><p className=' text-sm' >Good</p></span>
                       </div>
                     </div>
-                    <div className='w-full'>
+                    <div className='w-full flex flex-col gap-y-2'>
                       <label className='w-full'>Message : </label>
                       <textarea name='review '  required   className={`w-full h-40 bg-transparent border border-[rgba(0,0,0,0.6)] rounded-md p-2.5 placeholder:text-gray-500 outline-none resize-none placeholder:text-gray-450`}  placeholder='Message'/>
                     </div>
+                    <div className='w-full flex justify-center'>
+                      <button onClick={()=>setRevError(true)} className='flex items-center justify-center border w-full  border-black  my-5 p-4 text-xl bg-black text-white rounded-2xl transition-all duration-300 hover:bg-white hover:text-black'>Post &gt; &gt;</button>
+                    </div>
+                    {revError&&
+                     <div >
+                      <p className='text-center text-red-400'>We did not find any Order from that email</p>
+                    </div>
+                    }
                   </form>
               </section>
               }
