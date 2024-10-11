@@ -270,7 +270,15 @@ function Userform({formRef,id}){
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    if(name==='phone'){
+      if (/^\d*$/.test(value)&&value.length<=11) {
+        setFormData({ ...formData, [name]: value });
+      }
+    }else{    
+      setFormData({ ...formData, [name]: value });
+    }
+
+
   };     
 
   
@@ -360,7 +368,7 @@ function Userform({formRef,id}){
           {errorState.name&&<p className='w-full mt-2 text-red-600 text-sm'>Enter a valid Name (Must be smaller then 24 characters)</p>}
         </div>
         <div className='flex items-center gap-x-5 flex-wrap'>
-          <input value={formData.phone} onChange={handleChange} name='phone' type='tel' required className={`2xl:w-[30%] xl:w-[30%]  lg:w-[85%] md:w-[85%] sm:w-[85%] esm:w-full bg-transparent border border-[rgba(0,0,0,0.6)] rounded-md p-2.5 placeholder:text-gray-450 outline-none ${errorState.phone ? 'border-red-600  placeholder:text-red-600  text-red-600 ' : 'border-[rgba(0,0,0,0.6)] placeholder:text-gray-450 ' } `} placeholder='Phone '/>
+          <input value={formData.phone} onChange={handleChange}  name='phone' type='tel' required className={`2xl:w-[30%] xl:w-[30%]  lg:w-[85%] md:w-[85%] sm:w-[85%] esm:w-full bg-transparent border border-[rgba(0,0,0,0.6)] rounded-md p-2.5 placeholder:text-gray-450 outline-none ${errorState.phone ? 'border-red-600  placeholder:text-red-600  text-red-600 ' : 'border-[rgba(0,0,0,0.6)] placeholder:text-gray-450 ' } `} placeholder='Phone '/>
           {errorState.phone&&<p className=' w-full mt-2 text-red-600 text-sm'>Enter a valid Phone Number (Number Should be 11 digits)</p>}
         </div>
         <div className='flex items-center gap-x-5 flex-wrap'>
@@ -428,7 +436,7 @@ function Userform({formRef,id}){
           </div>
           <div className='flex gap-x-2 items-center'>
             <h1 className='text-lg font-bold'>Total = </h1>
-            <p className='text-[1.2rem] text-gray-600 flex gap-x-2'> {productTotal} + <p className='line-through'>200 </p>  = {productTotal}  {/*{inputValue*200}*/}  </p>
+            <p className='text-[1.2rem] text-gray-600 flex gap-x-2'> {productTotal} + <span className='line-through'>200 </span>  = {productTotal}  {/*{inputValue*200}*/}  </p>
           </div>
           <p className='text-red-600 text-sm mt-5'>After placing Order you will be expecting a Confirmation Phone Call . Must be Answered In-order to Make your Purchase. </p>
         </div>
