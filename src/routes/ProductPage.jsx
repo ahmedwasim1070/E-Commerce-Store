@@ -238,7 +238,7 @@ function Userform({formRef,id}){
     address: '',
     quantity: 1,
     productData: productData[id].productName,
-    productTotal: 1,
+    productTotal: productData[id].productPrice - productData[id].productSale*1,
   });
   const [errorState,setErrorState]=useState({
     name: false,
@@ -360,6 +360,7 @@ function Userform({formRef,id}){
             address: '',
             quantity: 1,
             productData: productData[id].productName,
+            productTotal: productData[id].productPrice - productData[id].productSale*1,
           });
           setInputValue(1);
           setLoading(false); // Reset loading state
