@@ -8,6 +8,7 @@ import About from '../components/About';
 import Footer from '../components/Footer';
 import { productData } from '../data/Data';
 import Info from '../components/Info';
+import { Helmet } from 'react-helmet';
 
 function Home({idxPr,setIdxPr,addToCart,cartData}) {
 
@@ -51,6 +52,11 @@ function Home({idxPr,setIdxPr,addToCart,cartData}) {
 
   return (
     <main className=' w-full overflow-x-hidden'>
+      <Helmet>
+        <title>Crush | Fragrances</title>
+        <meta name="keywords" content="Crush Fragrance, Crush Perfumes, Premium Fragrances, Perfumes for Men, Perfumes for Women, Best Fragrance Store, Buy Perfumes Online, Crush Fragrance Shop, Signature Scents, Exclusive Perfumes  " />
+        <meta name="description" content="Love at Frist Scent > Check-out our Premium Fragrances Now"/>
+      </Helmet>
       <Info/>
       <div className='w-full mx-auto fl:container'>
         <Header cartData={cartData} smNav={smNav}/>

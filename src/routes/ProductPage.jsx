@@ -5,6 +5,7 @@ import emailjs from 'emailjs-com';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {productData,countryCity} from '../data/Data';
+import { Helmet } from 'react-helmet';
 import Header from '../components/Header';
 
 
@@ -39,6 +40,12 @@ function ProductPage({cartData}) {
 
   return (
     <main className='bg-img w-full h-[100vh] overflow-x-hidden'>
+        <Helmet>
+          <title>Crush | {productData[id].productName}</title>
+          <meta name="keywords" content={`Crush Fragrance, Crush Perfumes, Premium Fragrances, Perfumes for Men, Perfumes for Women, Best Fragrance Store, Buy Perfumes Online, Crush Fragrance Shop, Signature Scents, Exclusive Perfumes , ${productData[id].productName} Fragrance , For ${productData[id].productType} ,  ${productData[id].productName} Perfume ,  ${productData[id].productName} `} />
+          <meta name="description" content="Love at Frist Scent > Check Out our Premium Fragrances Now"/>
+        </Helmet>
+      
         <div className='w-full mx-auto fl:container text-white'>
               <Header cartData={cartData} smNav={smNav}/>
               <Productrender statusColor={statusColor}  viewForm={viewForm} id={id}/>

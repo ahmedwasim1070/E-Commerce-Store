@@ -1,5 +1,6 @@
 import React ,{useState} from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import Header from '../components/Header';
 import About from '../components/About';
 
@@ -13,6 +14,11 @@ function AboutPage({cartData}) {
   }
   return (
       <main className=' w-full h-[100vh] overflow-x-hidden'>
+        <Helmet>
+          <title>Crush | About-Us</title>
+          <meta name="keywords" content="Crush Fragrance About Us, Crush Perfumes About Us , Crush Fragrance About , Crush Perfume About " />
+          <meta name="description" content="Love at Frist Scent > Check-out our Premium Fragrances Now"/>
+        </Helmet>
         <div className='w-full mx-auto fl:container'>
             <Header cartData={cartData} smNav={smNav}/>
             <About/>
