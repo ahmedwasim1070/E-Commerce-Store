@@ -50,6 +50,7 @@ function Product({addToCart}) {
             <img
               loading='lazy'
               className='w-full h-full'
+              alt='Product-Images'
               src={`/productimg/${c.productImg}`}
             />
           </div>

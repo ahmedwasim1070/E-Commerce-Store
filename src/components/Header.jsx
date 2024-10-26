@@ -23,7 +23,7 @@ function Header({smNav,cartData}) {
   return (
     <> 
       <nav className='w-full h-[120px] text-black flex'>
-        <div className='flex items-center justify-center pb-3 2xl:pl-20 xl:pl-20 lg:pl-20 md:pl-14 sm:pl-14 esm:pl-4'><Link to='/'><img className='2xl:w-[160px] xl:w-[161px] lg:w-[162px] md:w-[165px] sm:w-[250px] esm:w-[250px]  h-[58px]' src='/crush-logo.webp' /></Link></div>
+        <div className='flex items-center justify-center pb-3 2xl:pl-20 xl:pl-20 lg:pl-20 md:pl-14 sm:pl-14 esm:pl-4'><Link aria-label='Logo' to='/'><img className='2xl:w-[160px] xl:w-[161px] lg:w-[162px] md:w-[165px] sm:w-[250px] esm:w-[250px]  h-[58px]' alt='logo' src='/crush-logo.webp' /></Link></div>
 
         {navResize ?        
         <div className='w-[75%] flex justify-center items-center '>  

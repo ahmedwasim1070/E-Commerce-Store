@@ -136,7 +136,7 @@ function Hero({idxPr,setIdxPr,addToCart}){
         </div>
         <div className='h-full flex flex-col justify-center ml-20 2xl:relative 2xl:left-0 2xl:top-0 2xl:w-[40%] xl:relative xl:left-0 xl:top-0 xl:w-[40%] lg:relative lg:left-0 lg:top-0 lg:w-[40%] md:absolute md:left-[2%] md:top-[0%] md:w-[40%] sm:absolute sm:left-[1%] sm:top-[0%] sm:w-[40%] esm:absolute esm:left-[-50px] esm:top-[-10px] esm:w-[250px]'>
           <div className='mb-10'>
-            <img loading='lazy' className={`drop-shadow-${productData[idxPr].productColor}  2xl:w-[17vw] xl:w-[20vw] lg:w-[20vw] md:w-[30vw] sm:w-[30vw] esm:w-[250px] `} src={`/productimg/${productData[idxPr].productImg}`} />
+            <img loading='lazy' className={`drop-shadow-${productData[idxPr].productColor}  2xl:w-[17vw] xl:w-[20vw] lg:w-[20vw] md:w-[30vw] sm:w-[30vw] esm:w-[250px] `} alt='Product-Image' src={`/productimg/${productData[idxPr].productImg}`} />
           </div>
           <div className='w-full ml-5'>
             <button onClick={(e) => { 

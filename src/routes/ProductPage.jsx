@@ -92,7 +92,7 @@ function Productrender({id,viewForm,statusColor}){
     <main className='w-full'>
       <section className='w-full h-full flex pt-20 text-black  gap-x-10 gap-y-10 flex-wrap 2xl:justify-center xl:justify-center lg:justify-center md:justify-start sm:justify-start esm:justify-start'>
         <div className={`w-[350px] h-[550px] p-5 2xl:mx-0 xl:mx-0 lg:mx-0 md:mx-auto sm:mx-auto esm:mx-auto ${productData[id].productBg}`}>
-          <img className='mx-auto' loading='lazy' alt={`${productData[id].productName}`} src={`/productimg/${productData[id].productImg}`}/>
+          <img className='mx-auto' loading='lazy' alt={`${productData[id].productName}`}  src={`/productimg/${productData[id].productImg}`}/>
         </div>
         <section className='2xl:w-[40%] xl:w-[40%] lg:w-[40%] md:w-[50%] sm:w-[100%] h-full ml-10 flex flex-col gap-y-4'>
           <div className='flex gap-y-1 flex-col'>
