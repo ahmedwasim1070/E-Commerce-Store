@@ -98,7 +98,7 @@ export let productData=[
         'productTagline': 'Let your radiance bloom.',
         'productSize' : '50ml',
         'productType': 'For Women',
-        'productStatus': 'In-Stock',
+        'productStatus': 'Out-Of-Stock',
         'productDes': `Step into a world of playful glamour with Velvet Bloom, a fragrance inspired by the iconic Victoria's Secret Bombshell. Designed for the woman who exudes confidence and a flirtatious charm, Velvet Bloom captures the essence of femininity with a bright, fresh twist.<br/><br/>The fragrance opens with top notes of passionfruit, grapefruit, pineapple, tangerine, and big strawberry, creating an irresistible burst of fruity sweetness that instantly energizes and captivates. The heart reveals a lush bouquet of peony, vanilla orchid, red berries, jasmine, and lily-of-the-valley, adding a floral elegance that is both inviting and glamorous.<br/><br/>As the scent settles, base notes of musk, woody notes, and oakmoss provide a soft, grounding finish, enhancing its flirtatious and sophisticated appeal. Velvet Bloom is ideal for spring and summer, perfect for daytime outings, casual settings, or fun social events.<br/><br/>With its enchanting blend of fruity and floral notes, Velvet Bloom offers a bright, youthful, and energetic character with moderate longevity and projection. It is the perfect companion for the woman who loves to shine wherever she goes.<br/><br/>`,
         'productBg': 'bg-perfume-6',
         'productIns': 'Bombshell',

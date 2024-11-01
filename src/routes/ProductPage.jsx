@@ -81,11 +81,121 @@ function Productrender({id,viewForm,statusColor}){
   let [noteDrop,setNoteDrop]=useState(false)
   let [revDropdown,setRevDropdown]=useState(true)
   let [revForm,setRevForm]=useState(false)
-  let [revError,setRevError]=useState(false)
+  let [loading, setLoading] = useState(false)
+  const [isRatingRequired, setIsRatingRequired] = useState(false)
+  let [revFormData,setRevFormData]=useState({
+    name: '',
+    email: '',
+    productData: productData[id].productName,
+    rating: 0,
+    message: '',
+  })
+  let [errorState,setErrorState]=useState({
+    name: false,
+    email: false,
+    message: false,
+  })
+
+  const handleChange=(e)=>{
+    const { name ,value } = e.target;
+    setRevFormData({...revFormData, [name]:value });
+    console.log(revFormData.productData)
+  }
+
+
+  const handleStarClick = (value) => {
+    setRevFormData((prevData) => ({
+      ...prevData,
+      rating: value,
+    }));
+    setIsRatingRequired(false); 
+  };
+
 
   const reviewSubmit=(e)=>{
+
     e.preventDefault()
+
+    let formValid=true;
+    
+    if(revFormData.name.length<=2||revFormData.name.length>=24){
+      setErrorState(prevState=>({
+        ...prevState,
+        name: true
+      }))
+      formValid=false;
+    }else{
+      setErrorState(prevState=>({
+        ...prevState,
+        name: false
+      }))
+    }
+
+    if(revFormData.email.length<=6||revFormData.email.length>=56){
+      setErrorState(prevState=>({
+        ...prevState,
+        email: true
+      }))
+      formValid=false;
+    }else{
+      setErrorState(prevState=>({
+        ...prevState,
+        email: false
+      }))
+    }
+
+
+
+    if(revFormData.message.length<=3||revFormData.message.length>=256){
+      setErrorState(prevState=>({
+        ...prevState,
+        message: true
+      }))
+      formValid=false;
+    }else{
+      setErrorState(prevState=>({
+        ...prevState,
+        message: false
+      }))
+    }
+
+    if(revFormData.rating===undefined || revFormData.rating===0){
+      setIsRatingRequired(true);
+      formValid=false;
+    }else{
+      setIsRatingRequired(false);
+    }
+
+    if(!formValid){
+      return;
+    }
+    setLoading(true);
+
+
+    emailjs
+      .send('service_vg57kot', 'template_bevy64o', revFormData, 'Fjy-fcxiwoKe8eMct')
+      .then((response) => {
+        toast.success('Your Review is under Inspection! Will be uploaded shortly'); 
+        setTimeout(() => {
+          setRevFormData({
+            name: '',
+            email: '',
+            message: '',
+            rating: 0,
+          });
+          setLoading(false); // Reset loading state
+        }, 300);
+        })
+      .catch((err) => {
+        toast.error('Server Not Responding right now!'); 
+        setLoading(false);
+    });
+
   }
+
+
+
+
 
   return(
 
@@ -165,33 +275,34 @@ function Productrender({id,viewForm,statusColor}){
                   ()=>setRevForm(true)
                 } className='bg-black p-3 text-white transition-all duration-300 rounded-md outline-none border border-[rgba(0,0,0,0.6)] hover:text-black hover:bg-white'>Write a Review</button>
               </div>
+              {/* Review From */}
               {
                 revForm&&
-                <section  className='w-full my-10 flex items-center justify-center'>
+                <section   className='w-full my-10 flex items-center justify-center'>
                   <form onSubmit={reviewSubmit} className='2xl:w-[50%] xl:w-[55%] lg:w-[60%] sm:w-[75%] esm:w-full p-5 rounded-xl flex gap-y-5 flex-col border border-solid shadow-2xl'>
                     <h1 className='text-center text-2xl my-4 font-bold'>Write a Review</h1>
                     <div className='w-full flex flex-col gap-y-2'>
-                      <label className='w-full'>Name : </label>
-                      <input  name='name' type='text' required className={`w-full bg-transparent border  rounded-md p-2.5   outline-none border-[rgba(0,0,0,0.6)] placeholder:text-gray-450 `} placeholder='Full Name'/>
+                      <label className={`w-full ${errorState.name? ` text-red-600` : ` text-black`}`}>Name : </label>
+                      <input  name='name' type='text' onChange={handleChange} value={revFormData.name} required className={`w-full bg-transparent border  rounded-md p-2.5   outline-none  ${errorState.name? 'border-red-600 placeholder:text-red-600 ' : 'border-[rgba(0,0,0,0.6)] placeholder:text-gray-450'} `} placeholder='Full Name'/>
+                      {errorState.name&&
+                        <p className='text-red-600'> Enter a walid name !</p>
+                      }
                     </div>
                     <div className='w-full flex flex-col gap-y-2'>
-                      <label className='w-full'>Email : </label>
-                      <input  name='email' type='text' required className={`w-full bg-transparent border  rounded-md p-2.5   outline-none border-[rgba(0,0,0,0.6)] placeholder:text-gray-450 `} placeholder='Email'/>
+                      <label className={`w-full ${errorState.email? ` text-red-600` : ` text-black`}`} >Email : </label>
+                      <input  name='email' type='text' onChange={handleChange} value={revFormData.email} required className={`w-full bg-transparent border  rounded-md p-2.5   outline-none border-[rgba(0,0,0,0.6)] placeholder:text-gray-450 ${errorState.email? ' border-red-600 placeholder:text-red-600 ' : ' border-[rgba(0,0,0,0.6)] placeholder:text-gray-450 ' } `} placeholder='Email'/>
+                      {errorState.email&&
+                        <p className='text-red-600'> Enter a valid email !</p>
+                      }
                     </div>
                     <div className='w-full'>
                       <label>Review : </label>
-                      <div className="rate">
-                       <input type="radio" id="star5" name="rate" value="5" />
-                       <label htmlFor="star5" title="5 star">5 stars</label>
-                       <input type="radio" id="star4" name="rate" value="4" />
-                       <label htmlFor="star4" title="4 star">4 stars</label>
-                       <input type="radio" id="star3" name="rate" value="3" />
-                       <label htmlFor="star3" title="3 star">3 stars</label>
-                       <input type="radio" id="star2" name="rate" value="2" />
-                       <label htmlFor="star2" title="2 star">2 stars</label>
-                       <input type="radio" id="star1" name="rate" value="1" />
-                       <label htmlFor="star1" title="1 star">1 star</label>
+                      <div className='w-full flex justify-center my-5'>
+                      {[1, 2, 3, 4, 5].map((star) => (
+                          <span key={star} onClick={() => handleStarClick(star)} style={{ cursor: 'pointer', color: star <= revFormData.rating ? 'gold' : 'gray', fontSize: ' 30px ', }}>★</span>
+                          ))}
                       </div>
+                      {isRatingRequired && <p className='text-red-600 text-center my-5'>Please select at least one star.</p>}
                       <div className='w-full flex justify-center items-center gap-x-4'>
                         <span className='flex flex-col items-center'><p>😔</p><p className=' text-sm' >Bad</p></span>
                         <hr className='w-[20%] border border-[rgba(0,0,0,0.2)]'/>
@@ -199,18 +310,20 @@ function Productrender({id,viewForm,statusColor}){
                       </div>
                     </div>
                     <div className='w-full flex flex-col gap-y-2'>
-                      <label className='w-full'>Message : </label>
-                      <textarea name='review '  required   className={`w-full h-40 bg-transparent border border-[rgba(0,0,0,0.6)] rounded-md p-2.5 placeholder:text-gray-500 outline-none resize-none placeholder:text-gray-450`}  placeholder='Message'/>
+                      <label className={`w-full ${errorState.message? ` text-red-600` : ` text-black`}`} >Message : </label>
+                      <textarea name='message'  required onChange={handleChange} value={revFormData.message}   className={`w-full h-40 bg-transparent border rounded-md p-2.5 outline-none resize-none ${errorState.message? 'border-red-600 placeholder:text-red-600 ' : 'border-[rgba(0,0,0,0.6)] placeholder:text-gray-450'} `}  placeholder='Message'/>
+                      {errorState.message&&
+                        <p className='text-red-600'>Message should be  under 256 characters </p>
+                      }
                     </div>
                     <div className='w-full flex justify-center'>
-                      <button onClick={()=>setRevError(true)} className='flex items-center justify-center border w-full  border-black  my-5 p-4 text-xl bg-black text-white rounded-2xl transition-all duration-300 hover:bg-white hover:text-black'>Post &gt; &gt;</button>
+                      <button onClick={reviewSubmit} className='flex items-center justify-center border w-full  border-black  my-5 p-4 text-xl bg-black text-white rounded-2xl transition-all duration-300 hover:bg-white hover:text-black'>Post &gt; &gt;</button>
                     </div>
-                    {revError&&
-                     <div >
-                      <p className='text-center text-red-400'>We did not find any Order from that email</p>
-                    </div>
-                    }
                   </form>
+                  {loading&&
+                    <div className='w-full h-full absolute backdrop-blur-sm top-0 flex justify-center items-center '>
+                      <div className="loader"></div>
+                    </div>}
               </section>
               }
 
@@ -224,6 +337,8 @@ function Productrender({id,viewForm,statusColor}){
     </main>
   )
 }
+
+
 
 
 
@@ -252,7 +367,6 @@ function Userform({formRef,id}){
     phone: false,
     email: false,
     address: false,
-
   })
 
   const handleProvinceChange = (e) => {
@@ -328,7 +442,7 @@ function Userform({formRef,id}){
       newErrorState.phone = false;
     }
   
-    if (formData.name.length <=6 ||formData.email.length >= 48) {
+    if (formData.email.length <=6 ||formData.email.length >= 48) {
       newErrorState.email = true;
       formValid = false;
     } else {
