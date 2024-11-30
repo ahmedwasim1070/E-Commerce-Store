@@ -1,4 +1,4 @@
-export let productData=[
+export const productData=[
     {
         'productId': 1,
         'productName': 'Shelby',
