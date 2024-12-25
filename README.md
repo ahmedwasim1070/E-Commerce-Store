@@ -1,3 +1,5 @@
+Fully working E-commerce Store pure Front-End
+
 Technologies Used:
 
 1. React

@@ -13,7 +13,7 @@ function ProductPage({ cartData }) {
   const { id } = useParams();
 
   let [shSmNav, setShSmNav] = useState(false);
-  let [isForm, setIsForm] = useState(false);
+  let [isForm, setIsForm] = useState(true);
   let [statusColor, setStatusColor] = useState(false);
   const formRef = useRef(null);
 
@@ -201,12 +201,7 @@ function Productrender({ id, viewForm, statusColor }) {
     setLoading(true);
 
     emailjs
-      .send(
-        "service_vg57kot",
-        "template_bevy64o",
-        revFormData,
-        "Fjy-fcxiwoKe8eMct"
-      )
+      .send("service_id", "template_id", revFormData, "accout_key")
       .then((response) => {
         toast.success(
           "Your Review is under Inspection! Will be uploaded shortly"
@@ -818,12 +813,7 @@ function Userform({ formRef, id }) {
     setLoading(true);
 
     emailjs
-      .send(
-        "service_vg57kot",
-        "template_rjxgysl",
-        formData,
-        "Fjy-fcxiwoKe8eMct"
-      )
+      .send("service_id", "template_id", formData, "account_key")
       .then((response) => {
         toast.success("Order Placed successfully!");
         setTimeout(() => {
