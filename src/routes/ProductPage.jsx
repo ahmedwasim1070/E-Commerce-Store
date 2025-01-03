@@ -13,7 +13,7 @@ function ProductPage({ cartData }) {
   const { id } = useParams();
 
   let [shSmNav, setShSmNav] = useState(false);
-  let [isForm, setIsForm] = useState(true);
+  let [isForm, setIsForm] = useState(false);
   let [statusColor, setStatusColor] = useState(false);
   const formRef = useRef(null);
 
@@ -812,8 +812,9 @@ function Userform({ formRef, id }) {
 
     setLoading(true);
 
+
     emailjs
-      .send("service_id", "template_id", formData, "account_key")
+      .send("service_vg57kot", "template_rjxgysl", formData, "Fjy-fcxiwoKe8eMct")
       .then((response) => {
         toast.success("Order Placed successfully!");
         setTimeout(() => {
