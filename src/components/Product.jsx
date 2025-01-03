@@ -61,9 +61,6 @@ function Product({addToCart}) {
               <h1 className='text-xl text-black font-bold'>
                 PKR {c.productPrice - c.productSale}
               </h1>
-              <h1 className='text-xl line-through text-[rgba(0,0,0,0.4)] font-bold'>
-                PKR {c.productPrice}
-              </h1>
             </div>
             <div className='flex 2xl:justify-start xl:justify-start lg:justify-start md:justify-center sm:justify-center esm:justify-center pr-2'>
             <button type='button' onClick={(e) => { 

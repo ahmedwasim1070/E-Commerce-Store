@@ -274,10 +274,7 @@ function Productrender({ id, viewForm, statusColor }) {
               <h2 className="text-4xl">
                 PKR,{" "}
                 {productData[id].productPrice - productData[id].productSale}
-              </h2>
-              <h2 className="text-4xl text-[rgba(0,0,0,0.4)] line-through">
-                PKR,{productData[id].productPrice}
-              </h2>
+              </h2> 
             </div>
           </div>
           <hr className="border-[rgba(0,0,0,0.3)] 2xl:w-auto xl:w-auto lg:w-auto md:w-[100%] sm:w-[70%] esm:w-[70%]" />
