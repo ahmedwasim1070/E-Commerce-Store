@@ -811,7 +811,7 @@ function Userform({ formRef, id }) {
 
 
     emailjs
-      .send("service_vg57kot", "template_rjxgysl", formData, "Fjy-fcxiwoKe8eMct")
+      .send("service_id", "template_id", formData, "accout_key")
       .then((response) => {
         toast.success("Order Placed successfully!");
         setTimeout(() => {
